@@ -1,0 +1,46 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+header {
+  background-color: #ffcb05;
+  padding: 10px;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+}
+
+header input {
+  padding: 5px;
+  width: 80%;
+  max-width: 300px;
+  margin-top: 10px;
+}
+
+main {
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.pokemon-card {
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: white;
+  border-radius: 5px;
+  width: 150px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.pokemon-card.caught {
+  background-color: #d4edda;
+  text-decoration: line-through;
+}
