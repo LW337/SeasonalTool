@@ -1,46 +1,94 @@
 body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f4f4f4;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
 }
 
 header {
-  background-color: #ffcb05;
-  padding: 10px;
-  text-align: center;
+    background-color: #ffcb05;
+    padding: 10px;
+    text-align: center;
 }
 
 header h1 {
-  margin: 0;
+    margin: 0;
 }
 
 header input {
-  padding: 5px;
-  width: 80%;
-  max-width: 300px;
-  margin-top: 10px;
+    padding: 5px;
+    width: 80%;
+    max-width: 300px;
+    margin-top: 10px;
 }
 
 main {
-  padding: 20px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    align-content: stretch;
+}
+.pokemon-card {
+    padding: 2px;
+    border: 1px solid #ccc;
+    background-color: white;
+    border-radius: 5px;
+    width: 100px;
+    height: 40px; /* Set a fixed height for consistent size */
+    text-align: center;
+    cursor: pointer;
+    display: flex; /* Use flexbox for vertical alignment */
+    flex-direction: column; /* Ensure content stacks vertically */
+    justify-content: center; /* Center content vertically */
 }
 
-.pokemon-card {
-  padding: 10px;
-  border: 1px solid #ccc;
-  background-color: white;
-  border-radius: 5px;
-  width: 150px;
-  text-align: center;
-  cursor: pointer;
-}
 
 .pokemon-card.caught {
-  background-color: #d4edda;
-  text-decoration: line-through;
+    background-color: #d4edda;
+    text-decoration: line-through;
 }
+
+.pokemon-card.yellow {
+    background-color: yellow;
+    color: black;
+    border: 2px solid orange;
+}
+
+.variant-group{
+  width: 100%;
+}
+
+.variant-group table{
+  width: 100%;
+  
+}
+
+
+/* Responsive design for mobile screens */
+@media screen and (max-width: 600px) {
+    .pokemon-card {
+        width: 50px;  /* Smaller cards on mobile */
+        font-size: 5px;
+        text-align: center;
+    }
+
+    main {
+        padding: 0px;
+        justify-content: flex-start; /* Stack cards for easier viewing */
+    }
+
+    header input {
+        width: 100%;
+        max-width: none;
+    }
+
+    .variant-group h2 {
+        font-size: 18px;
+    }
+
+    .pokemon-table {
+        width: 100%;
+        border-collapse:collapse;
+        table-layout: fixed;

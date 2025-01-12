@@ -1,17 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pokédex</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
     <h1>Pokédex</h1>
-    <input type="text" id="search" placeholder="Search Pokémon..." oninput="filterPokemon()">
+    <div class="filters">
+      <select id="locationFilter" onchange="filterPokemon()">
+        <option value="">All Locations</option>
+      </select>
+      <select id="timeFilter" onchange="filterPokemon()">
+        <option value="">All Times</option>
+      </select>
+      <select id="typeFilter" onchange="filterPokemon()">
+        <option value="">All Types</option>
+      </select>
+      <button id="clearProgressButton">Clear Progress</button>
+      <button id="toggleCaughtButton">Hide Caught Pokémon</button>
+    </div>
   </header>
-  <main id="pokedex"></main>
+  <main id="pokedex">
+</main>
   <script src="script.js"></script>
 </body>
 </html>
