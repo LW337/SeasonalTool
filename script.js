@@ -97,7 +97,7 @@ const getDisplayList = (filteredLines) => {
 
 // Display Pokémon in HTML tables by variant
 const displayPokemon = (list) => {
-    const variantOrder = ["Normal", "Dark", "Mystic", "Metallic", "Shiny", "Shadow"];
+    const variantOrder = ["Normal", "Dark", "Mystic", "Metallic", "Shadow", "Shiny"];
     const rarityOrder = ["Common", "Rare","Legendary", "Ultra Beast"]; // Example rarity order
 
     const sortedByVariant = variantOrder.map((variantType) => ({
