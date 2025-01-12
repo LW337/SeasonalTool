@@ -42,7 +42,7 @@ const loadPokemon = async () => {
         }
     } catch (error) {
         console.error("Error loading Pokémon data:", error);
-        pokedex.innerHTML = `<p>Error loading Pokémon data. Check console for details.</p>`;
+        pokedex.innerHTML = `<p>Error loading Pokémon data: ${error.message}</p>`;
     }
 };
 
