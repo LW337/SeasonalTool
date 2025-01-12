@@ -15,15 +15,15 @@ let activeFilters = {
 // Populate the fixed options for the time and type dropdowns
 const populateFilterDropdowns = () => {
     timeFilter.innerHTML = `
-      <option value="">All</option>
-      <option value="Day">Day</option>
-      <option value="Night">Night</option>
+        <option value="">All</option>
+        <option value="Day">Day</option>
+        <option value="Night">Night</option>
     `;
 
     typeFilter.innerHTML = `
-      <option value="">All</option>
-      <option value="Land">Land</option>
-      <option value="Water">Water</option>
+        <option value="">All</option>
+        <option value="Land">Land</option>
+        <option value="Water">Water</option>
     `;
 };
 
@@ -69,7 +69,6 @@ const filterPokemon = () => {
 // Get the filtered evolution lines
 const getFilteredLines = () => {
     const evolutionLines = pokemonList.filter(pokemon => pokemon.previousForms.length === 0);
-    
 
     return evolutionLines.filter((pokemon) => {
         return pokemon.locations.some((location) => {
@@ -83,14 +82,13 @@ const getFilteredLines = () => {
 
 // Get the full display list with evolution stages
 const getDisplayList = (filteredLines) => {
-  
     return filteredLines.flatMap((pokemon) => {
         const stages = [pokemon];
         let base = pokemon;
-        
-        let evoChains = pokemonList.filter((p) => p.previousForms.includes(base.id))
 
-        evoChains.forEach((pokemon) => stages.push(pokemon))
+        let evoChains = pokemonList.filter((p) => p.previousForms.includes(base.id));
+
+        evoChains.forEach((pokemon) => stages.push(pokemon));
 
         return stages;
     });
@@ -139,7 +137,6 @@ const getEvolutionRows = (pokemonList, variantNum) => {
 
         // Get all Pokémon that evolve from the baseForm
         let evoChain = pokemonList.filter((p) => p.previousForms.includes(baseForm.id));
-        
 
         // Add each Pokémon to the evolution line
         evoChain.forEach((pokemon) => line.push(pokemon));
@@ -155,25 +152,23 @@ const getEvolutionRows = (pokemonList, variantNum) => {
     // Generate the HTML rows for each evolution line
     return evolutionLines.map((line) => {
         const row = line.map((pokemon) => {
-            if (!pokemon) return `<td></td>`;  // Empty stage for missing Pokémon
+            if (!pokemon) return `<td></td>`; // Empty stage for missing Pokémon
 
             const selectedVariant = pokemon.variants[variantNum];
             // Render the Pokémon card with caught status
             return `
                 <td>
                     <div class="pokemon-card ${selectedVariant?.caught ? "caught" : ""}"
-                    onclick="toggleCaught(${pokemon.id}, '${selectedVariant.type}')">
-                        <h4>${selectedVariant.type} 
-                    ${pokemon.name}</h4>
+                        onclick="toggleCaught(${pokemon.id}, '${selectedVariant.type}')">
+                        <h4>${selectedVariant.type} ${pokemon.name}</h4>
                     </div>
                 </td>
             `;
         }).join(""); // Join cells into a single row
 
-        return `<tr>${row}</tr>`;  // Wrap the row with <tr> tags
+        return `<tr>${row}</tr>`; // Wrap the row with <tr> tags
     }).join(""); // Join all rows together
 };
-
 
 // Populate the location filter dropdown with unique locations
 const populateLocationFilter = () => {
@@ -263,24 +258,20 @@ const toggleCaught = (id, variantType) => {
     }
 };
 
-
-let showCaught = true;  // This variable will track the visibility status of caught Pokémon
-
-// Add an event listener for the "Toggle Caught Visibility" button
-
+let showCaught = true; // This variable will track the visibility status of caught Pokémon
 
 // Function to toggle the visibility of caught Pokémon
 const toggleCaughtVisibility = () => {
     showCaught = !showCaught;
-    
+
     const caughtCards = document.querySelectorAll(".pokemon-card.caught");
     caughtCards.forEach((card) => {
         card.style.display = showCaught ? "block" : "none";
     });
-    
+
     const toggleButton = document.getElementById("toggleCaughtButton");
     toggleButton.textContent = showCaught ? "Hide Caught Pokémon" : "Show Caught Pokémon";
-    
+
     filterPokemon();
 };
 
