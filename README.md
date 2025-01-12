@@ -1,3 +1,5 @@
+https://lw337.github.io/SeasonalTool/
+
 A tool for tracking Seasonal Catches
 
 Start by selecting a filter using the dropdowns then just click to mark Pokémon as caught
