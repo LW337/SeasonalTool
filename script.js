@@ -27,7 +27,6 @@ const populateFilterDropdowns = () => {
     `;
 };
 
-// Load Pokémon data and apply filters
 const loadPokemon = async () => {
     try {
         const savedData = localStorage.getItem("pokedex");
@@ -38,6 +37,8 @@ const loadPokemon = async () => {
             const response = await fetch("pokemon_list.json");
             if (!response.ok) throw new Error("Failed to load Pokémon data.");
             pokemonList = await response.json();
+            localStorage.setItem("pokedex", JSON.stringify(pokemonList)); // Save to localStorage
+            filterPokemon();
         }
     } catch (error) {
         console.error("Error loading Pokémon data:", error);
