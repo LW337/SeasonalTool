@@ -1,0 +1,891 @@
+[
+    {
+        "id": 1,
+        "name": "Bulbasaur",
+        "rarity": "Rare",
+        "variants": [
+            {
+                "type": "Normal",
+                "caught": false
+            },
+            {
+                "type": "Dark",
+                "caught": false
+            },
+            {
+                "type": "Mystic",
+                "caught": false
+            },
+            {
+                "type": "Metallic",
+                "caught": false
+            },
+            {
+                "type": "Shadow",
+                "caught": false
+            },
+            {
+                "type": "Shiny",
+                "caught": false
+            }
+        ],
+        "locations": [
+            {
+                "place": "Route 20",
+                "time": "Day",
+                "type": "Land"
+            },
+            {
+                "place": "Route 20",
+                "time": "Night",
+                "type": "Land"
+            }
+        ],
+        "previousForms": []
+    },
+    {
+        "id": 2,
+        "name": "Ivysaur",
+        "rarity": "Rare",
+        "variants": [
+            {
+                "type": "Normal",
+                "caught": false
+            },
+            {
+                "type": "Dark",
+                "caught": false
+            },
+            {
+                "type": "Mystic",
+                "caught": false
+            },
+            {
+                "type": "Metallic",
+                "caught": false
+            },
+            {
+                "type": "Shadow",
+                "caught": false
+            },
+            {
+                "type": "Shiny",
+                "caught": false
+            }
+        ],
+        "locations": [],
+        "previousForms": [
+            1
+        ]
+    },
+    {
+        "id": 3,
+        "name": "Venusaur",
+        "rarity": "Rare",
+        "variants": [
+            {
+                "type": "Normal",
+                "caught": false
+            },
+            {
+                "type": "Dark",
+                "caught": false
+            },
+            {
+                "type": "Mystic",
+                "caught": false
+            },
+            {
+                "type": "Metallic",
+                "caught": false
+            },
+            {
+                "type": "Shadow",
+                "caught": false
+            },
+            {
+                "type": "Shiny",
+                "caught": false
+            }
+        ],
+        "locations": [],
+        "previousForms": [
+            2,
+            1
+        ]
+    },
+    {
+        "id": 4,
+        "name": "Venusaur (Mega)",
+        "rarity": "Rare",
+        "variants": [
+            {
+                "type": "Normal",
+                "caught": false
+            },
+            {
+                "type": "Dark",
+                "caught": false
+            },
+            {
+                "type": "Mystic",
+                "caught": false
+            },
+            {
+                "type": "Metallic",
+                "caught": false
+            },
+            {
+                "type": "Shadow",
+                "caught": false
+            },
+            {
+                "type": "Shiny",
+                "caught": false
+            }
+        ],
+        "locations": [],
+        "previousForms": [
+            3,
+            2,
+            1
+        ]
+    },
+    {
+        "id": 5,
+        "name": "Charmander",
+        "rarity": "Rare",
+        "variants": [
+            {
+                "type": "Normal",
+                "caught": false
+            },
+            {
+                "type": "Dark",
+                "caught": false
+            },
+            {
+                "type": "Mystic",
+                "caught": false
+            },
+            {
+                "type": "Metallic",
+                "caught": false
+            },
+            {
+                "type": "Shadow",
+                "caught": false
+            },
+            {
+                "type": "Shiny",
+                "caught": false
+            }
+        ],
+        "locations": [
+            {
+                "place": "Scorched Sanctum (South)",
+                "time": "Day",
+                "type": "Land"
+            },
+            {
+                "place": "Scorched Sanctum (South)",
+                "time": "Night",
+                "type": "Land"
+            }
+        ],
+        "previousForms": []
+    },
+    {
+        "id": 6,
+        "name": "Charmeleon",
+        "rarity": "Rare",
+        "variants": [
+            {
+                "type": "Normal",
+                "caught": false
+            },
+            {
+                "type": "Dark",
+                "caught": false
+            },
+            {
+                "type": "Mystic",
+                "caught": false
+            },
+            {
+                "type": "Metallic",
+                "caught": false
+            },
+            {
+                "type": "Shadow",
+                "caught": false
+            },
+            {
+                "type": "Shiny",
+                "caught": false
+            }
+        ],
+        "locations": [],
+        "previousForms": [
+            5
+        ]
+    },
+    {
+        "id": 7,
+        "name": "Charizard",
+        "rarity": "Rare",
+        "variants": [
+            {
+                "type": "Normal",
+                "caught": false
+            },
+            {
+                "type": "Dark",
+                "caught": false
+            },
+            {
+                "type": "Mystic",
+                "caught": false
+            },
+            {
+                "type": "Metallic",
+                "caught": false
+            },
+            {
+                "type": "Shadow",
+                "caught": false
+            },
+            {
+                "type": "Shiny",
+                "caught": false
+            }
+        ],
+        "locations": [],
+        "previousForms": [
+            6,
+            5
+        ]
+    },
+    {
+        "id": 8,
+        "name": "Charizard (Mega X)",
+        "rarity": "Rare",
+        "variants": [
+            {
+                "type": "Normal",
+                "caught": false
+            },
+            {
+                "type": "Dark",
+                "caught": false
+            },
+            {
+                "type": "Mystic",
+                "caught": false
+            },
+            {
+                "type": "Metallic",
+                "caught": false
+            },
+            {
+                "type": "Shadow",
+                "caught": false
+            },
+            {
+                "type": "Shiny",
+                "caught": false
+            }
+        ],
+        "locations": [],
+        "previousForms": [
+            7,
+            6,
+            5
+        ]
+    },
+    {
+        "id": 9,
+        "name": "Charizard (Mega Y)",
+        "rarity": "Rare",
+        "variants": [
+            {
+                "type": "Normal",
+                "caught": false
+            },
+            {
+                "type": "Dark",
+                "caught": false
+            },
+            {
+                "type": "Mystic",
+                "caught": false
+            },
+            {
+                "type": "Metallic",
+                "caught": false
+            },
+            {
+                "type": "Shadow",
+                "caught": false
+            },
+            {
+                "type": "Shiny",
+                "caught": false
+            }
+        ],
+        "locations": [],
+        "previousForms": [
+            7,
+            6,
+            5
+        ]
+    },
+    {
+        "id": 10,
+        "name": "Squirtle",
+        "rarity": "Rare",
+        "variants": [
+            {
+                "type": "Normal",
+                "caught": false
+            },
+            {
+                "type": "Dark",
+                "caught": false
+            },
+            {
+                "type": "Mystic",
+                "caught": false
+            },
+            {
+                "type": "Metallic",
+                "caught": false
+            },
+            {
+                "type": "Shadow",
+                "caught": false
+            },
+            {
+                "type": "Shiny",
+                "caught": false
+            }
+        ],
+        "locations": [
+            {
+                "place": "Shore's End",
+                "time": "Day",
+                "type": "Water"
+            },
+            {
+                "place": "Shore's End",
+                "time": "Night",
+                "type": "Water"
+            }
+        ],
+        "previousForms": []
+    },
+    {
+        "id": 11,
+        "name": "Wartortle",
+        "rarity": "Rare",
+        "variants": [
+            {
+                "type": "Normal",
+                "caught": false
+            },
+            {
+                "type": "Dark",
+                "caught": false
+            },
+            {
+                "type": "Mystic",
+                "caught": false
+            },
+            {
+                "type": "Metallic",
+                "caught": false
+            },
+            {
+                "type": "Shadow",
+                "caught": false
+            },
+            {
+                "type": "Shiny",
+                "caught": false
+            }
+        ],
+        "locations": [],
+        "previousForms": [
+            10
+        ]
+    },
+    {
+        "id": 12,
+        "name": "Blastoise",
+        "rarity": "Rare",
+        "variants": [
+            {
+                "type": "Normal",
+                "caught": false
+            },
+            {
+                "type": "Dark",
+                "caught": false
+            },
+            {
+                "type": "Mystic",
+                "caught": false
+            },
+            {
+                "type": "Metallic",
+                "caught": false
+            },
+            {
+                "type": "Shadow",
+                "caught": false
+            },
+            {
+                "type": "Shiny",
+                "caught": false
+            }
+        ],
+        "locations": [],
+        "previousForms": [
+            11,
+            10
+        ]
+    },
+    {
+        "id": 13,
+        "name": "Blastoise (Mega)",
+        "rarity": "Rare",
+        "variants": [
+            {
+                "type": "Normal",
+                "caught": false
+            },
+            {
+                "type": "Dark",
+                "caught": false
+            },
+            {
+                "type": "Mystic",
+                "caught": false
+            },
+            {
+                "type": "Metallic",
+                "caught": false
+            },
+            {
+                "type": "Shadow",
+                "caught": false
+            },
+            {
+                "type": "Shiny",
+                "caught": false
+            }
+        ],
+        "locations": [],
+        "previousForms": [
+            12,
+            11,
+            10
+        ]
+    },
+    {
+        "id": 14,
+        "name": "Caterpie",
+        "rarity": "Common",
+        "variants": [
+            {
+                "type": "Normal",
+                "caught": false
+            },
+            {
+                "type": "Dark",
+                "caught": false
+            },
+            {
+                "type": "Mystic",
+                "caught": false
+            },
+            {
+                "type": "Metallic",
+                "caught": false
+            },
+            {
+                "type": "Shadow",
+                "caught": false
+            },
+            {
+                "type": "Shiny",
+                "caught": false
+            }
+        ],
+        "locations": [
+            {
+                "place": "New Haven",
+                "time": "Day",
+                "type": "Land"
+            },
+            {
+                "place": "Route 11",
+                "time": "Day",
+                "type": "Land"
+            },
+            {
+                "place": "Route 17",
+                "time": "Day",
+                "type": "Land"
+            },
+            {
+                "place": "Route 19",
+                "time": "Day",
+                "type": "Land"
+            }
+        ],
+        "previousForms": []
+    },
+    {
+        "id": 15,
+        "name": "Metapod",
+        "rarity": "Common",
+        "variants": [
+            {
+                "type": "Normal",
+                "caught": false
+            },
+            {
+                "type": "Dark",
+                "caught": false
+            },
+            {
+                "type": "Mystic",
+                "caught": false
+            },
+            {
+                "type": "Metallic",
+                "caught": false
+            },
+            {
+                "type": "Shadow",
+                "caught": false
+            },
+            {
+                "type": "Shiny",
+                "caught": false
+            }
+        ],
+        "locations": [
+            {
+                "place": "New Haven",
+                "time": "Day",
+                "type": "Land"
+            }
+        ],
+        "previousForms": [
+            14
+        ]
+    },
+    {
+        "id": 16,
+        "name": "Butterfree",
+        "rarity": "Common",
+        "variants": [
+            {
+                "type": "Normal",
+                "caught": false
+            },
+            {
+                "type": "Dark",
+                "caught": false
+            },
+            {
+                "type": "Mystic",
+                "caught": false
+            },
+            {
+                "type": "Metallic",
+                "caught": false
+            },
+            {
+                "type": "Shadow",
+                "caught": false
+            },
+            {
+                "type": "Shiny",
+                "caught": false
+            }
+        ],
+        "locations": [
+            {
+                "place": "Route 17",
+                "time": "Day",
+                "type": "Land"
+            }
+        ],
+        "previousForms": [
+            15,
+            14
+        ]
+    },
+    {
+        "id": 17,
+        "name": "Weedle",
+        "rarity": "Common",
+        "variants": [
+            {
+                "type": "Normal",
+                "caught": false
+            },
+            {
+                "type": "Dark",
+                "caught": false
+            },
+            {
+                "type": "Mystic",
+                "caught": false
+            },
+            {
+                "type": "Metallic",
+                "caught": false
+            },
+            {
+                "type": "Shadow",
+                "caught": false
+            },
+            {
+                "type": "Shiny",
+                "caught": false
+            }
+        ],
+        "locations": [
+            {
+                "place": "New Haven",
+                "time": "Night",
+                "type": "Land"
+            },
+            {
+                "place": "Route 1",
+                "time": "Day",
+                "type": "Land"
+            },
+            {
+                "place": "Route 8",
+                "time": "Night",
+                "type": "Land"
+            },
+            {
+                "place": "Route 11",
+                "time": "Night",
+                "type": "Land"
+            },
+            {
+                "place": "Route 17",
+                "time": "Night",
+                "type": "Land"
+            },
+            {
+                "place": "Route 19",
+                "time": "Night",
+                "type": "Land"
+            }
+        ],
+        "previousForms": []
+    },
+    {
+        "id": 18,
+        "name": "Kakuna",
+        "rarity": "Common",
+        "variants": [
+            {
+                "type": "Normal",
+                "caught": false
+            },
+            {
+                "type": "Dark",
+                "caught": false
+            },
+            {
+                "type": "Mystic",
+                "caught": false
+            },
+            {
+                "type": "Metallic",
+                "caught": false
+            },
+            {
+                "type": "Shadow",
+                "caught": false
+            },
+            {
+                "type": "Shiny",
+                "caught": false
+            }
+        ],
+        "locations": [
+            {
+                "place": "New Haven",
+                "time": "Night",
+                "type": "Land"
+            }
+        ],
+        "previousForms": [
+            17
+        ]
+    },
+    {
+        "id": 19,
+        "name": "Beedrill",
+        "rarity": "Common",
+        "variants": [
+            {
+                "type": "Normal",
+                "caught": false
+            },
+            {
+                "type": "Dark",
+                "caught": false
+            },
+            {
+                "type": "Mystic",
+                "caught": false
+            },
+            {
+                "type": "Metallic",
+                "caught": false
+            },
+            {
+                "type": "Shadow",
+                "caught": false
+            },
+            {
+                "type": "Shiny",
+                "caught": false
+            }
+        ],
+        "locations": [
+            {
+                "place": "Route 17",
+                "time": "Night",
+                "type": "Land"
+            }
+        ],
+        "previousForms": [
+            18,
+            17
+        ]
+    },
+    {
+        "id": 20,
+        "name": "Pidgey",
+        "rarity": "Common",
+        "variants": [
+            {
+                "type": "Normal",
+                "caught": false
+            },
+            {
+                "type": "Dark",
+                "caught": false
+            },
+            {
+                "type": "Mystic",
+                "caught": false
+            },
+            {
+                "type": "Metallic",
+                "caught": false
+            },
+            {
+                "type": "Shadow",
+                "caught": false
+            },
+            {
+                "type": "Shiny",
+                "caught": false
+            }
+        ],
+        "locations": [
+            {
+                "place": "New Haven",
+                "time": "Day",
+                "type": "Land"
+            },
+            {
+                "place": "Vortex Citadel",
+                "time": "Day",
+                "type": "Land"
+            },
+            {
+                "place": "Route 3",
+                "time": "Day",
+                "type": "Land"
+            },
+            {
+                "place": "Route 8",
+                "time": "Night",
+                "type": "Land"
+            },
+            {
+                "place": "Route 12",
+                "time": "Day",
+                "type": "Land"
+            },
+            {
+                "place": "Route 21",
+                "time": "Day",
+                "type": "Land"
+            },
+            {
+                "place": "New Haven",
+                "time": "Night",
+                "type": "Land"
+            },
+            {
+                "place": "Vortex Citadel",
+                "time": "Night",
+                "type": "Land"
+            },
+            {
+                "place": "Route 12",
+                "time": "Night",
+                "type": "Land"
+            }
+        ],
+        "previousForms": []
+    },
+    {
+        "id": 21,
+        "name": "Pidgeotto",
+        "rarity": "Common",
+        "variants": [
+            {
+                "type": "Normal",
+                "caught": false
+            },
+            {
+                "type": "Dark",
+                "caught": false
+            },
+            {
+                "type": "Mystic",
+                "caught": false
+            },
+            {
+                "type": "Metallic",
+                "caught": false
+            },
+            {
+                "type": "Shadow",
+                "caught": false
+            },
+            {
+                "type": "Shiny",
+                "caught": false
+            }
+        ],
+        "locations": [
+            {
+                "place": "New Haven",
+                
