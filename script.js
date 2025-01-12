@@ -98,11 +98,17 @@ const getDisplayList = (filteredLines) => {
 // Display Pokémon in HTML tables by variant
 const displayPokemon = (list) => {
     const variantOrder = ["Normal", "Dark", "Mystic", "Metallic", "Shiny", "Shadow"];
+    const rarityOrder = ["Common", "Rare","Legendary", "Ultra Beast"]; // Example rarity order
+
     const sortedByVariant = variantOrder.map((variantType) => ({
         type: variantType,
         pokemons: list.filter((pokemon) =>
             pokemon.variants.some((variant) => variant.type === variantType)
-        ),
+        ).sort((a, b) => {
+            const aRarityIndex = rarityOrder.indexOf(a.rarity);
+            const bRarityIndex = rarityOrder.indexOf(b.rarity);
+            return aRarityIndex - bRarityIndex;
+        }),
     }));
 
     pokedex.innerHTML = sortedByVariant
