@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class=search_display>
   <header>
     <h1>Pokédex</h1>
     <div class="filters">
@@ -18,11 +19,14 @@
       </select>
       <select id="typeFilter" onchange="filterPokemon()">
         <option value="">All Types</option>
-      </select>
+      </select></div>
+      <div class="buttons">
       <button id="clearProgressButton">Clear Progress</button>
       <button id="toggleCaughtButton">Hide Caught Pokémon</button>
     </div>
   </header>
+  <hr></hr>
+  </div>
   <main id="pokedex">
 </main>
   <script src="script.js"></script>
