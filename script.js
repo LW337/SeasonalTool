@@ -202,7 +202,7 @@ const populateLocationFilter = () => {
     namedLocations.sort();
 
     const options = [
-        `<option value="">All</option>`,
+        `<option value="">No Route Selected</option>`,
         ...routes.map((route) => `<option value="${route}">${route}</option>`),
         ...namedLocations.map((named) => `<option value="${named}">${named}</option>`),
     ];
