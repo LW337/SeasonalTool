@@ -1,18 +1,27 @@
 body {
     font-family: Arial, sans-serif;
     margin: 0;
-    padding: 0;
     background-color: #f4f4f4;
+    padding-top: 100px;
+}
+
+.search_display{
+  position: fixed;
+  padding: 0px;
+  width: 100%;
+  top: 0;
 }
 
 header {
-    background-color: #ffcb05;
+    background-color: #303133;
     padding: 10px;
     text-align: center;
 }
 
 header h1 {
     margin: 0;
+    color: #ffffff;
+    text-shadow: 1px 1px 2px #ce0100;
 }
 
 header input {
@@ -22,26 +31,34 @@ header input {
     margin-top: 10px;
 }
 
-main {
-    padding: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-    align-content: stretch;
+hr {
+  display: block;
+  margin-top: 0em;
+  margin-bottom: 0em;
+  margin-left: none;
+  margin-right: none;
+  border-style: solid;
+  color: #ce0100;
+  border-width: 2px;
 }
+
 .pokemon-card {
     padding: 2px;
     border: 1px solid #ccc;
     background-color: white;
     border-radius: 5px;
-    width: 100px;
-    height: 40px; /* Set a fixed height for consistent size */
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse;
     text-align: center;
     cursor: pointer;
-    display: flex; /* Use flexbox for vertical alignment */
-    flex-direction: column; /* Ensure content stacks vertically */
-    justify-content: center; /* Center content vertically */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: clamp(8px, 1.5vw, 50px); /* Automatically resize text */
+    line-height: 1.2; /* Adjust line spacing */
+    overflow: hidden; /* Prevent overflow if text is too long */
+    text-overflow: ellipsis; /* Add ellipsis for overflowing text */
 }
 
 
@@ -50,28 +67,27 @@ main {
     text-decoration: line-through;
 }
 
-.pokemon-card.yellow {
-    background-color: yellow;
-    color: black;
-    border: 2px solid orange;
-}
-
 .variant-group{
   width: 100%;
 }
 
-.variant-group table{
-  width: 100%;
+.variant-group h2 {
+  text-align: center;
   
 }
 
+.variant-group table {
+  margin: 0 auto;
+  text-align: center;
+  width: 80%;
+
+}
 
 /* Responsive design for mobile screens */
 @media screen and (max-width: 600px) {
     .pokemon-card {
-        width: 50px;  /* Smaller cards on mobile */
-        font-size: 5px;
-        text-align: center;
+        width: 50px;
+        height: 40px;
     }
 
     main {
@@ -87,8 +103,16 @@ main {
     .variant-group h2 {
         font-size: 18px;
     }
+    
+    .variant-group table {
+      margin: 0;
+      text-align: left;
+      width: 100%;
+      
+    }
 
     .pokemon-table {
         width: 100%;
         border-collapse:collapse;
         table-layout: fixed;
+        
