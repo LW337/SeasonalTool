@@ -292,7 +292,7 @@ const toggleCaught = (id, variantType) => {
 
             // Reapply visibility rules if caught Pokémon are hidden
             if (!showCaught) {
-                applyCaughtVisibilityRules
+                applyCaughtVisibilityRules();
             }
         }
     }
@@ -311,10 +311,7 @@ const applyCaughtVisibilityRules = () => {
 // Function to toggle the visibility of caught Pokémon
 const toggleCaughtVisibility = () => {
     showCaught = !showCaught;
-
-    if (showcaught) {
-        applyCaughtVisibilityRules
-    }
+    applyCaughtVisibilityRules();
 
     const toggleButton = document.getElementById("toggleCaughtButton");
     toggleButton.textContent = showCaught ? "Hide Caught Pokémon" : "Show Caught Pokémon";
