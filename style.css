@@ -11,6 +11,7 @@ body {
   width: 100%;
   top: 0;
   justify-content: center;
+  font-size: clamp(12px, 1.5vw, 36px);
 }
 
 .Stats{
