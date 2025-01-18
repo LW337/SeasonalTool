@@ -13,6 +13,30 @@ let activeFilters = {
     variant: ""
 };
 
+// Debounce function
+const debounce = (func, delay) => {
+    let debounceTimer;
+    return function() {
+        const context = this;
+        const args = arguments;
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(() => func.apply(context, args), delay);
+    }
+};
+
+// Add a common event listener function
+const addFilterEventListeners = (filterElement, filterType) => {
+    filterElement.addEventListener("change", debounce(() => {
+        activeFilters[filterType] = filterElement.value;
+        filterPokemon();
+    }, 300));
+};
+
+addFilterEventListeners(locationFilter, "location");
+addFilterEventListeners(timeFilter, "time");
+addFilterEventListeners(typeFilter, "type");
+addFilterEventListeners(variantFilter, "variant");
+
 // Populate the fixed options for the time and type dropdowns
 const populateFilterDropdowns = () => {
     timeFilter.innerHTML = `
@@ -77,8 +101,8 @@ const filterPokemon = () => {
     if (activeFilters.location != "" && activeFilters.time != "" && activeFilters.type != "" && filteredByVariant.length > 0) {
         areaProbability(filteredByVariant);
     } else {
-      document.getElementById("routeProbability").style.visibility = "hidden"
-      document.getElementById("routeCompletion").style.visibility = "hidden"
+        document.getElementById("routeProbability").style.visibility = "hidden"
+        document.getElementById("routeCompletion").style.visibility = "hidden"
     }
 
     // Display Pokémon and reapply visibility rules for caught Pokémon
@@ -149,38 +173,41 @@ const displayPokemon = (list) => {
         }),
     }));
 
-    pokedex.innerHTML = sortedByVariant
-        .map((variantGroup) => {
-            if (variantGroup.pokemons.length === 0) return ""; // Skip empty groups
+    const fragment = document.createDocumentFragment();
+    sortedByVariant.forEach((variantGroup) => {
+        if (variantGroup.pokemons.length === 0) return; // Skip empty groups
 
-            const allCaught = variantGroup.pokemons.every((pokemon) => {
-                const variant = pokemon.variants.find((v) => v.type === variantGroup.type);
-                return variant?.caught; // Ensure we're checking the specific variant
-            });
+        const allCaught = variantGroup.pokemons.every((pokemon) => {
+            const variant = pokemon.variants.find((v) => v.type === variantGroup.type);
+            return variant?.caught; // Ensure we're checking the specific variant
+        });
 
-            if (!showCaught && allCaught) return "";
+        if (!showCaught && allCaught) return;
 
-            if (activeFilters.variant != "" && activeFilters.variant != variantGroup.type) return "";
+        if (activeFilters.variant != "" && activeFilters.variant != variantGroup.type) return;
 
-            const variantReference = variantOrder.findIndex(x => x === variantGroup.type);
-            return `
-                <div class="variant-group">
-                    <h2>${variantGroup.type} Pokémon</h2>
-                    <table class="pokemon-table">
-                        <tr>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        ${getEvolutionRows(variantGroup.pokemons, variantReference)}
-                    </table>
-                </div>
-            `;
-        })
-        .join("");
+        const variantReference = variantOrder.findIndex(x => x === variantGroup.type);
+        const groupDiv = document.createElement("div");
+        groupDiv.className = "variant-group";
+        groupDiv.innerHTML = `
+            <h2>${variantGroup.type} Pokémon</h2>
+            <table class="pokemon-table">
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                ${getEvolutionRows(variantGroup.pokemons, variantReference)}
+            </table>
+        `;
+        fragment.appendChild(groupDiv);
+    });
+
+    pokedex.innerHTML = "";
+    pokedex.appendChild(fragment);
 };
 
 // Generate the evolution rows for each Pokémon variant
@@ -228,56 +255,16 @@ const getEvolutionRows = (pokemonList, variantNum) => {
 // Populate the location filter dropdown with unique locations
 const populateLocationFilter = () => {
     const allLocations = new Set();
-
-    pokemonList.forEach((pokemon) => {
-        pokemon.locations.forEach((location) => {
-            allLocations.add(location.place);
-        });
+    pokemonList.forEach(pokemon => {
+        pokemon.locations.forEach(location => allLocations.add(location.place));
     });
-
-    const routes = [];
-    const namedLocations = [];
-
-    allLocations.forEach((location) => {
-        if (/^Route \d+$/i.test(location)) {
-            routes.push(location);
-        } else {
-            namedLocations.push(location);
-        }
-    });
-
-    routes.sort((a, b) => parseInt(a.match(/\d+/)) - parseInt(b.match(/\d+/)));
-    namedLocations.sort();
-
+    const sortedLocations = sortLocations([...allLocations], /^Route \d+$/i);
     const options = [
         `<option value="">No Route Selected</option>`,
-        ...routes.map((route) => `<option value="${route}">${route}</option>`),
-        ...namedLocations.map((named) => `<option value="${named}">${named}</option>`),
+        ...sortedLocations.map(location => `<option value="${location}">${location}</option>`),
     ];
-
     locationFilter.innerHTML = options.join("");
 };
-
-// Update filters and re-filter Pokémon
-locationFilter.addEventListener("change", () => {
-    activeFilters.location = locationFilter.value;
-    filterPokemon();
-});
-
-timeFilter.addEventListener("change", () => {
-    activeFilters.time = timeFilter.value;
-    filterPokemon();
-});
-
-typeFilter.addEventListener("change", () => {
-    activeFilters.type = typeFilter.value;
-    filterPokemon();
-});
-
-variantFilter.addEventListener("change", () => {
-    activeFilters.variant = variantFilter.value;
-    filterPokemon();
-});
 
 const clearProgress = () => {
     const confirmation = window.confirm("Are you sure you want to clear your progress? This action cannot be undone.");
@@ -305,25 +292,29 @@ const toggleCaught = (id, variantType) => {
 
             // Reapply visibility rules if caught Pokémon are hidden
             if (!showCaught) {
-                const caughtCards = document.querySelectorAll(".pokemon-card.caught");
-                caughtCards.forEach((card) => {
-                    card.style.display = "none";
-                });
+                applyCaughtVisibilityRules
             }
         }
     }
 };
 
-let showCaught = true; // This variable will track the visibility status of caught Pokémon
+let showCaught = true;
+
+// Function to apply visibility rules for caught Pokémon
+const applyCaughtVisibilityRules = () => {
+    const caughtCards = document.querySelectorAll(".pokemon-card.caught");
+    caughtCards.forEach((card) => {
+        card.style.display = showCaught ? "block" : "none";
+    });
+};
 
 // Function to toggle the visibility of caught Pokémon
 const toggleCaughtVisibility = () => {
     showCaught = !showCaught;
 
-    const caughtCards = document.querySelectorAll(".pokemon-card.caught");
-    caughtCards.forEach((card) => {
-        card.style.display = showCaught ? "block" : "none";
-    });
+    if (showcaught) {
+        applyCaughtVisibilityRules
+    }
 
     const toggleButton = document.getElementById("toggleCaughtButton");
     toggleButton.textContent = showCaught ? "Hide Caught Pokémon" : "Show Caught Pokémon";
@@ -347,7 +338,7 @@ const areaProbability = (areaPokemon) => {
             pokemon.locations.some((location) => location.place === activeFilters.location)
         ) :
         areaPokemon;
-    
+
     const uncaughtPokemon = filteredByLocation.filter((pokemon) =>
         pokemon.variants.some((variant) => !variant.caught) &&
         pokemon.locations.some((location) =>
@@ -400,7 +391,7 @@ const areaProbability = (areaPokemon) => {
         "Shadow": 0.05,
     };
     let routeProbability = 0;
-    
+
     uncaughtPokemon.forEach((pokemon) => {
         let pokemonProbability = 0;
         let encounterRarity = pokemon.rarity;
@@ -431,32 +422,32 @@ const areaProbability = (areaPokemon) => {
     });
     routeProbability = 1 / routeProbability
     routeProbability = Math.round(routeProbability)
-    
+
     let totalPokemon = (areaPokemon.length) * 6
     let caughtPokemon = 0;
-    
+
     areaPokemon.forEach((pokemon) => {
-      pokemon.variants.forEach((variant) => {
+        pokemon.variants.forEach((variant) => {
             if (variant.caught) {
-              console.log(pokemon.name)
+                console.log(pokemon.name)
                 caughtPokemon += 1
             };
-      });
+        });
     });
-    
+
     document.getElementById("routeCompletion").style.visibility = "visible"
 
     document.getElementById("routeCompletion").textContent = `Route : ${caughtPokemon} / ${totalPokemon} `
-    
+
     document.getElementById("routeProbability").style.visibility = "visible"
-    
-    if (routeProbability!= Infinity ){
-      document.getElementById("routeProbability").textContent = `Route Chance: 1 in ${routeProbability}`
-      
+
+    if (routeProbability != Infinity) {
+        document.getElementById("routeProbability").textContent = `Route Chance: 1 in ${routeProbability}`
+
     } else {
-      document.getElementById("routeCompletion").textContent = "Complete"
-      document.getElementById("routeProbability").style.display = "None"
-      }
+        document.getElementById("routeCompletion").textContent = "Complete"
+        document.getElementById("routeProbability").style.display = "None"
+    }
 };
 
 const updatePokemonCounter = () => {
@@ -472,4 +463,20 @@ const updatePokemonCounter = () => {
 
     const counterElement = document.getElementById("pokemonCounter");
     counterElement.textContent = `Caught: ${caughtPokemon} / ${totalPokemon}`;
+};
+
+// Function to sort locations
+const sortLocations = (locations, regex) => {
+    const matching = [];
+    const nonMatching = [];
+    locations.forEach((location) => {
+        if (regex.test(location)) {
+            matching.push(location);
+        } else {
+            nonMatching.push(location);
+        }
+    });
+    matching.sort((a, b) => parseInt(a.match(/\d+/)) - parseInt(b.match(/\d+/)));
+    nonMatching.sort();
+    return [...matching, ...nonMatching];
 };
