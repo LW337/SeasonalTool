@@ -110,6 +110,10 @@ hr {
         padding: 0px;
         justify-content: flex-start; /* Stack cards for easier viewing */
     }
+    
+    body {
+      padding-top: 130px;
+    }
 
     header input {
         width: 100%;
