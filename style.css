@@ -2,7 +2,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     background-color: #f4f4f4;
-    padding-top: 165px;
+    padding-top: calc(5em + 10vw);
 }
 
 .search_display{
@@ -105,7 +105,7 @@ hr {
         width: 50px;
         height: 40px;
     }
-
+      
     main {
         padding: 0px;
         justify-content: flex-start; /* Stack cards for easier viewing */
