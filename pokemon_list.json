@@ -3958,12 +3958,12 @@
             {
                 "place": "Route 25",
                 "time": "Day",
-                "type": "Land"
+                "type": "Water"
             },
             {
                 "place": "Route 25",
                 "time": "Night",
-                "type": "Land"
+                "type": "Water"
             }
         ],
         "previousForms": []
@@ -4002,7 +4002,7 @@
             {
                 "place": "Route 25",
                 "time": "Day",
-                "type": "Land"
+                "type": "Water"
             }
         ],
         "previousForms": [
@@ -4133,7 +4133,7 @@
             {
                 "place": "Route 25",
                 "time": "Day",
-                "type": "Land"
+                "type": "Water"
             }
         ],
         "previousForms": []
@@ -5247,7 +5247,7 @@
             {
                 "place": "Route 25",
                 "time": "Day",
-                "type": "Land"
+                "type": "Water"
             }
         ],
         "previousForms": []
@@ -5436,7 +5436,7 @@
             {
                 "place": "Route 25",
                 "time": "Night",
-                "type": "Land"
+                "type": "Water"
             },
             {
                 "place": "The Quays",
@@ -5829,7 +5829,7 @@
             {
                 "place": "Route 25",
                 "time": "Day",
-                "type": "Land"
+                "type": "Water"
             },
             {
                 "place": "Mudbray Ranch",
@@ -5894,7 +5894,7 @@
             {
                 "place": "Route 25",
                 "time": "Night",
-                "type": "Land"
+                "type": "Water"
             },
             {
                 "place": "Mudbray Ranch",
@@ -6049,7 +6049,7 @@
             {
                 "place": "Route 25",
                 "time": "Night",
-                "type": "Land"
+                "type": "Water"
             },
             {
                 "place": "The Quays",
@@ -7444,7 +7444,7 @@
             {
                 "place": "Route 25",
                 "time": "Night",
-                "type": "Land"
+                "type": "Water"
             }
         ],
         "previousForms": []
@@ -10181,12 +10181,12 @@
             {
                 "place": "Route 25",
                 "time": "Day",
-                "type": "Land"
+                "type": "Water"
             },
             {
                 "place": "Route 25",
                 "time": "Night",
-                "type": "Land"
+                "type": "Water"
             }
         ],
         "previousForms": []
@@ -10655,7 +10655,7 @@
             {
                 "place": "Route 25",
                 "time": "Day",
-                "type": "Land"
+                "type": "Water"
             },
             {
                 "place": "Fungal Cavern (Lower)",
@@ -10665,7 +10665,7 @@
             {
                 "place": "Route 25",
                 "time": "Night",
-                "type": "Land"
+                "type": "Water"
             }
         ],
         "previousForms": []
@@ -12722,7 +12722,13 @@
                 "caught": false
             }
         ],
-        "locations": [],
+        "locations": [
+          {
+            "place": "Route 19",
+            "time": "Night",
+            "type": "Land"
+          }
+        ],
         "previousForms": [
             288
         ]
@@ -14898,7 +14904,7 @@
             {
                 "place": "Route 25",
                 "time": "Day",
-                "type": "Land"
+                "type": "Water"
             },
             {
                 "place": "The Quays",
@@ -16045,7 +16051,7 @@
             {
                 "place": "Route 25",
                 "time": "Day",
-                "type": "Land"
+                "type": "Water"
             },
             {
                 "place": "Route 23",
@@ -16252,41 +16258,7 @@
                 "place": "Route 8",
                 "time": "Day",
                 "type": "Water"
-            }
-        ],
-        "previousForms": []
-    },
-    {
-        "id": 370,
-        "name": "Castform",
-        "rarity": "Common",
-        "variants": [
-            {
-                "type": "Normal",
-                "caught": false
             },
-            {
-                "type": "Dark",
-                "caught": false
-            },
-            {
-                "type": "Mystic",
-                "caught": false
-            },
-            {
-                "type": "Metallic",
-                "caught": false
-            },
-            {
-                "type": "Shadow",
-                "caught": false
-            },
-            {
-                "type": "Shiny",
-                "caught": false
-            }
-        ],
-        "locations": [
             {
                 "place": "Stillwater Quarry",
                 "time": "Night",
@@ -16894,7 +16866,7 @@
             {
                 "place": "Route 25",
                 "time": "Day",
-                "type": "Land"
+                "type": "Water"
             },
             {
                 "place": "The Quays",
@@ -17018,7 +16990,7 @@
             {
                 "place": "Route 25",
                 "time": "Night",
-                "type": "Land"
+                "type": "Water"
             },
             {
                 "place": "Fungal Cavern (Lower)",
@@ -24461,7 +24433,7 @@
             {
                 "place": "Route 25",
                 "time": "Day",
-                "type": "Land"
+                "type": "Water"
             }
         ],
         "previousForms": []
@@ -30768,7 +30740,7 @@
             {
                 "place": "Route 25",
                 "time": "Day",
-                "type": "Land"
+                "type": "Water"
             },
             {
                 "place": "Route 24",
@@ -30778,7 +30750,7 @@
             {
                 "place": "Route 25",
                 "time": "Night",
-                "type": "Land"
+                "type": "Water"
             }
         ],
         "previousForms": []
@@ -30817,7 +30789,7 @@
             {
                 "place": "Route 25",
                 "time": "Night",
-                "type": "Land"
+                "type": "Water"
             }
         ],
         "previousForms": [
@@ -32287,12 +32259,12 @@
             {
                 "place": "Route 25",
                 "time": "Day",
-                "type": "Land"
+                "type": "Water"
             },
             {
                 "place": "Route 25",
                 "time": "Night",
-                "type": "Land"
+                "type": "Water"
             }
         ],
         "previousForms": []
@@ -34870,12 +34842,12 @@
             {
                 "place": "Route 24",
                 "time": "Night",
-                "type": "Land"
+                "type": "Water"
             },
             {
                 "place": "Route 25",
                 "time": "Night",
-                "type": "Land"
+                "type": "Water"
             }
         ],
         "previousForms": []
@@ -39593,5 +39565,104 @@
             }
         ],
         "previousForms": []
+    },
+    {
+        "id": 932,
+        "name": "Wyrdeer",
+        "rarity": "Common",
+        "variants": [
+            {
+                "type": "Normal",
+                "caught": false
+            },
+            {
+                "type": "Dark",
+                "caught": false
+            },
+            {
+                "type": "Mystic",
+                "caught": false
+            },
+            {
+                "type": "Metallic",
+                "caught": false
+            },
+            {
+                "type": "Shadow",
+                "caught": false
+            },
+            {
+                "type": "Shiny",
+                "caught": false
+            }
+        ],
+        "locations": [],
+        "previousForms": [252]
+    },
+    {
+        "id": 933,
+        "name": "Basculegion (M)",
+        "rarity": "Common",
+        "variants": [
+            {
+                "type": "Normal",
+                "caught": false
+            },
+            {
+                "type": "Dark",
+                "caught": false
+            },
+            {
+                "type": "Mystic",
+                "caught": false
+            },
+            {
+                "type": "Metallic",
+                "caught": false
+            },
+            {
+                "type": "Shadow",
+                "caught": false
+            },
+            {
+                "type": "Shiny",
+                "caught": false
+            }
+        ],
+        "locations": [],
+        "previousForms": [569]
+    },
+    {
+        "id": 934,
+        "name": "Basculegion (F)",
+        "rarity": "Common",
+        "variants": [
+            {
+                "type": "Normal",
+                "caught": false
+            },
+            {
+                "type": "Dark",
+                "caught": false
+            },
+            {
+                "type": "Mystic",
+                "caught": false
+            },
+            {
+                "type": "Metallic",
+                "caught": false
+            },
+            {
+                "type": "Shadow",
+                "caught": false
+            },
+            {
+                "type": "Shiny",
+                "caught": false
+            }
+        ],
+        "locations": [],
+        "previousForms": [569]
     }
 ]
