@@ -2,7 +2,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     background-color: #f4f4f4;
-    padding-top: 100px;
+    padding-top: 180px;
 }
 
 .search_display{
@@ -10,6 +10,15 @@ body {
   padding: 0px;
   width: 100%;
   top: 0;
+  justify-content: center;
+}
+
+.Stats{
+  color: #ffffff;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  gap: 20px;
 }
 
 header {
@@ -61,6 +70,12 @@ hr {
     text-overflow: ellipsis; /* Add ellipsis for overflowing text */
 }
 
+.filters{
+  display: flex;
+  flex: nowrap;
+  justify-content: center;
+  overflow-x: auto;
+}
 
 .pokemon-card.caught {
     background-color: #d4edda;
@@ -84,7 +99,7 @@ hr {
 }
 
 /* Responsive design for mobile screens */
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 400px) {
     .pokemon-card {
         width: 50px;
         height: 40px;
@@ -108,11 +123,23 @@ hr {
       margin: 0;
       text-align: left;
       width: 100%;
+      border-spacing: 0px;
       
     }
 
     .pokemon-table {
         width: 100%;
         border-collapse:collapse;
-        table-layout: fixed;
+        table-layout: fixed
+    }
         
+    .filters{
+      display: flex;
+      flex: nowrap;
+      justify-content: left;
+      overflow-x: auto;
+    }
+    
+    .filters select{
+      width:120px;
+    }
