@@ -24,17 +24,30 @@
         <option value="">All Types</option>
       </select></div>
       <div class="buttons">
-      <button id="clearProgressButton">Clear Progress</button>
+      <button id="settings-toggle">Settings</button>
       <button id="toggleCaughtButton">Hide Caught Pokémon</button>
     </div>
     <div class="Stats">
       <p id="pokemonCounter">Caught: 0 / 0</p>
-      <p id ="routeProbability"></p>
-      <p id ="routeCompletion"></p>
+      <p id ="routeProbability" style="display: none;"></p>
+      <p id ="routeCompletion" style="display: none;"></p>
     </div>
   </header>
   <hr></hr>
   </div>
+  <div id="settings-menu" style="display: none;">
+    <h2><u>Settings</u></h2>
+    <button id="clearProgressButton">Clear Progress</button>
+    <button id="statsDisplayButton">Stats Display</button>
+    <div>
+    <textarea id="import-export-textarea" rows="10" cols="50"></textarea>
+    </div>
+    <button id="export-btn">Export Pokedex Data</button>
+    <button id="import-btn">Import Pokedex Data</button>
+
+</script>
+  </div>
+  <div id="settings-overlay"></div>
   <main id="pokedex">
 </main>
   <script src="script.js"></script>
