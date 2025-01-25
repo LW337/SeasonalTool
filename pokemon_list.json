@@ -2803,7 +2803,7 @@
             {
                 "place": "Starfall",
                 "time": "Day",
-                "type": "Land"
+                "type": "Water"
             },
             {
                 "place": "Stillwater Quarry",
@@ -2828,7 +2828,7 @@
             {
                 "place": "Starfall",
                 "time": "Night",
-                "type": "Land"
+                "type": "Water"
             },
             {
                 "place": "Route 23",
@@ -5321,7 +5321,7 @@
             {
                 "place": "Starfall",
                 "time": "Day",
-                "type": "Land"
+                "type": "Water"
             },
             {
                 "place": "Stillwater Quarry",
@@ -5336,7 +5336,7 @@
             {
                 "place": "Starfall",
                 "time": "Night",
-                "type": "Land"
+                "type": "Water"
             },
             {
                 "place": "Stillwater Quarry",
@@ -5380,7 +5380,7 @@
             {
                 "place": "Starfall",
                 "time": "Day",
-                "type": "Land"
+                "type": "Water"
             },
             {
                 "place": "Route 23",
@@ -5844,7 +5844,7 @@
             {
                 "place": "Starfall",
                 "time": "Day",
-                "type": "Land"
+                "type": "Water"
             },
             {
                 "place": "Stillwater Quarry",
@@ -5909,7 +5909,7 @@
             {
                 "place": "Starfall",
                 "time": "Night",
-                "type": "Land"
+                "type": "Water"
             },
             {
                 "place": "Stillwater Quarry",
@@ -5973,7 +5973,7 @@
             {
                 "place": "Starfall",
                 "time": "Day",
-                "type": "Land"
+                "type": "Water"
             },
             {
                 "place": "The Quays",
@@ -5988,7 +5988,7 @@
             {
                 "place": "Starfall",
                 "time": "Night",
-                "type": "Land"
+                "type": "Water"
             },
             {
                 "place": "The Quays",
@@ -7439,7 +7439,7 @@
             {
                 "place": "Starfall",
                 "time": "Night",
-                "type": "Land"
+                "type": "Water"
             },
             {
                 "place": "Route 25",
@@ -7483,7 +7483,7 @@
             {
                 "place": "Starfall",
                 "time": "Night",
-                "type": "Land"
+                "type": "Water"
             }
         ],
         "previousForms": [
@@ -12767,7 +12767,7 @@
             {
                 "place": "Starfall",
                 "time": "Day",
-                "type": "Land"
+                "type": "Water"
             },
             {
                 "place": "Stillwater Quarry",
@@ -12787,7 +12787,7 @@
             {
                 "place": "Starfall",
                 "time": "Night",
-                "type": "Land"
+                "type": "Water"
             },
             {
                 "place": "Stillwater Quarry",
@@ -12841,7 +12841,7 @@
             {
                 "place": "Starfall",
                 "time": "Day",
-                "type": "Land"
+                "type": "Water"
             },
             {
                 "place": "Wild Overgrowth",
@@ -12851,7 +12851,7 @@
             {
                 "place": "Starfall",
                 "time": "Night",
-                "type": "Land"
+                "type": "Water"
             },
             {
                 "place": "Wild Overgrowth",
@@ -13154,7 +13154,7 @@
             {
                 "place": "Starfall",
                 "time": "Day",
-                "type": "Land"
+                "type": "Water"
             },
             {
                 "place": "The Quays",
@@ -13405,7 +13405,7 @@
             {
                 "place": "Starfall",
                 "time": "Day",
-                "type": "Land"
+                "type": "Water"
             },
             {
                 "place": "Stillwater Quarry",
@@ -17044,7 +17044,7 @@
             {
                 "place": "Starfall",
                 "time": "Day",
-                "type": "Land"
+                "type": "Water"
             },
             {
                 "place": "Route 23",
@@ -17054,7 +17054,7 @@
             {
                 "place": "Starfall",
                 "time": "Night",
-                "type": "Land"
+                "type": "Water"
             }
         ],
         "previousForms": []
@@ -26655,7 +26655,7 @@
             {
                 "place": "Starfall",
                 "time": "Day",
-                "type": "Land"
+                "type": "Water"
             },
             {
                 "place": "Stillwater Quarry",
@@ -26670,7 +26670,7 @@
             {
                 "place": "Starfall",
                 "time": "Night",
-                "type": "Land"
+                "type": "Water"
             }
         ],
         "previousForms": []
@@ -28510,7 +28510,7 @@
             {
                 "place": "Starfall",
                 "time": "Day",
-                "type": "Land"
+                "type": "Water"
             }
         ],
         "previousForms": []
@@ -33483,7 +33483,7 @@
             {
                 "place": "Starfall",
                 "time": "Night",
-                "type": "Land"
+                "type": "Water"
             },
             {
                 "place": "Stillwater Quarry",
@@ -34347,7 +34347,7 @@
             {
                 "place": "Starfall",
                 "time": "Day",
-                "type": "Land"
+                "type": "Water"
             },
             {
                 "place": "Route 23",
@@ -34367,7 +34367,7 @@
             {
                 "place": "Starfall",
                 "time": "Night",
-                "type": "Land"
+                "type": "Water"
             },
             {
                 "place": "Route 23",
