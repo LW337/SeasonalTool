@@ -236,19 +236,42 @@ const saveProgress = () => {
  * caught or not.
  */
 function importPokedexData() {
+	const variantMap = {
+		0: "Normal",
+		1: "Dark",
+		2: "Mystic",
+		3: "Metallic",
+		4: "Shadow",
+		5: "Shiny"
+	  };
+	
 	const text = textarea.value;
 	try {
 	  // Decode the base64 encoded text
 	  const base64Data = atob(text);
   
 	  // Parse the decoded text as JSON
-	  const pokedexData = JSON.parse(base64Data);
-  
+	  let pokedexData = JSON.parse(base64Data);
+
+	  const expandedData = pokedexData.map((pokemon) => {
+		return {
+		  id: pokemon.i,
+		  variants: pokemon.v.map((variant) => {
+			return {
+			  type: variantMap[variant.t],
+			  caught: variant.c
+			};
+		  })
+		};
+	  });
+
+	  pokedexData = {pokemonList: expandedData}
+	  
 	  // Check if the data has the expected structure
 	  if (!pokedexData.pokemonList || !Array.isArray(pokedexData.pokemonList)) {
 		throw new Error("Invalid data structure");
 	  }
-  
+
 	  // Check if each pokemon object has the expected properties
 	  pokedexData.pokemonList.forEach((pokemon) => {
 		if (!pokemon.id || !pokemon.variants) {
@@ -260,9 +283,19 @@ function importPokedexData() {
 	  pokedexData.pokemonList.forEach((importedPokemon) => {
 		const existingPokemon = pokemonList.find((pokemon) => pokemon.id === importedPokemon.id);
 		if (existingPokemon) {
-		  // Update the existing pokemon's variants with the imported data
-		  existingPokemon.variants = importedPokemon.variants;
-		}
+			// Find the variants that exist in the imported data
+			const importedVariantIds = importedPokemon.variants.map((variant) => variant.type);
+			const existingVariantIds = existingPokemon.variants.map((variant) => variant.type);
+		  
+			// Update the existing variants with the imported values
+			existingPokemon.variants = existingPokemon.variants.map((variant) => {
+			  if (importedVariantIds.includes(variant.type)) {
+				const importedVariant = importedPokemon.variants.find((v) => v.type === variant.type);
+				return { ...variant, caught: importedVariant.caught };
+			  }
+			  return variant;
+			});
+		  }
 	  });
   
 	  // Save the updated pokemonList to local storage
@@ -290,6 +323,15 @@ function importPokedexData() {
  * not.
  */
 function exportPokedexData() {
+	const variantMap = {
+		"Normal": 0,
+		"Dark": 1,
+		"Mystic": 2,
+		"Metallic": 3,
+		"Shadow": 4,
+		"Shiny": 5
+	  };
+	
 	// Get the list of caught Pokémon
 	const caughtPokemonList = pokemonList.filter((pokemon) => {
 		// Check if any variant of the Pokémon has been caught
@@ -302,13 +344,20 @@ function exportPokedexData() {
 		};
 	});
   
-	// Create a JSON object with the caught Pokémon data
-	const pokedexData = {
-		pokemonList: caughtPokemonList,
-	};
-  
+	const simplifiedData = caughtPokemonList.map((pokemon) => {
+		return {
+		  i: pokemon.id,
+		  v: pokemon.variants.map((variant) => {
+			return {
+			  t: variantMap[variant.type],
+			  c: variant.caught
+			};
+		  })
+		};
+	  });
+
 	// Convert the JSON object to a base64 encoded string
-	const jsonData = JSON.stringify(pokedexData);
+	const jsonData = JSON.stringify(simplifiedData);
 	const base64Data = btoa(jsonData);
   
 	// Set the value of the textarea to the base64 encoded string
