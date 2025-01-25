@@ -397,7 +397,6 @@ const getDisplayList = (filteredLines) => {
 
 		// Add each evolution to the stages list
 		evoChains.forEach((pokemon) => stages.push(pokemon));
-		console.log("stage:", stages);
 		return stages;
 	});
 };
