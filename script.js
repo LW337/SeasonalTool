@@ -238,47 +238,47 @@ const saveProgress = () => {
 function importPokedexData() {
 	const text = textarea.value;
 	try {
-		// Decode the base64 encoded text
-		const base64Data = atob(text);
-
-		// Parse the decoded text as JSON
-		const pokedexData = JSON.parse(base64Data);
-
-		// Check if the data has the expected structure
-		if (!pokedexData.pokemonList || !Array.isArray(pokedexData.pokemonList)) {
-			throw new Error("Invalid data structure");
+	  // Decode the base64 encoded text
+	  const base64Data = atob(text);
+  
+	  // Parse the decoded text as JSON
+	  const pokedexData = JSON.parse(base64Data);
+  
+	  // Check if the data has the expected structure
+	  if (!pokedexData.pokemonList || !Array.isArray(pokedexData.pokemonList)) {
+		throw new Error("Invalid data structure");
+	  }
+  
+	  // Check if each pokemon object has the expected properties
+	  pokedexData.pokemonList.forEach((pokemon) => {
+		if (!pokemon.id || !pokemon.variants) {
+		  throw new Error("Invalid pokemon data");
 		}
-
-		// Check if each pokemon object has the expected properties
-		pokedexData.pokemonList.forEach((pokemon) => {
-			if (!pokemon.id || !pokemon.name || !pokemon.variants) {
-				throw new Error("Invalid pokemon data");
-			}
-		});
-
-		// Merge the imported data with the existing pokemonList data
-		pokedexData.pokemonList.forEach((importedPokemon) => {
-			const existingPokemon = pokemonList.find((pokemon) => pokemon.id === importedPokemon.id);
-			if (existingPokemon) {
-				// Update the existing pokemon's variants with the imported data
-				existingPokemon.variants = importedPokemon.variants;
-			}
-		});
-
-		// Save the updated pokemonList to local storage
-		saveProgress();
-
-		// Update the Pokémon counter display
-		updatePokemonCounter();
-
-		// Apply filters to the updated pokemonList
-		filterPokemon();
+	  });
+  
+	  // Merge the imported data with the existing pokemonList data
+	  pokedexData.pokemonList.forEach((importedPokemon) => {
+		const existingPokemon = pokemonList.find((pokemon) => pokemon.id === importedPokemon.id);
+		if (existingPokemon) {
+		  // Update the existing pokemon's variants with the imported data
+		  existingPokemon.variants = importedPokemon.variants;
+		}
+	  });
+  
+	  // Save the updated pokemonList to local storage
+	  saveProgress();
+  
+	  // Update the Pokémon counter display
+	  updatePokemonCounter();
+  
+	  // Apply filters to the updated pokemonList
+	  filterPokemon();
 	} catch (error) {
-		// Display an error message in the textarea if the import fails
-		textarea.value = "Invalid import data. Please try again.";
-		console.error("Error importing Pokedex data:", error);
+	  // Display an error message in the textarea if the import fails
+	  textarea.value = "Invalid import data. Please try again.";
+	  console.error("Error importing Pokedex data:", error);
 	}
-}
+  }
 
 /**
  * Exports the caught Pokémon data to a base64 encoded string in the textarea element.
@@ -298,7 +298,6 @@ function exportPokedexData() {
 		// Create a new object with only the caught variants
 		return {
 			id: pokemon.id,
-			name: pokemon.name,
 			variants: pokemon.variants.filter((variant) => variant.caught),
 		};
 	});
@@ -397,6 +396,7 @@ const getDisplayList = (filteredLines) => {
 
 		// Add each evolution to the stages list
 		evoChains.forEach((pokemon) => stages.push(pokemon));
+		console.log("stage:", stages);
 		return stages;
 	});
 };
