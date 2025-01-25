@@ -227,9 +227,13 @@ const saveProgress = () => {
 };
 
 /**
- * Imports Pokémon data from the text area, decodes it, and updates the local Pokémon list.
- * Validates the structure of the imported data and applies changes if valid.
- * Displays an error message in the textarea if the import fails.
+ * Imports Pokémon data from a base64 encoded string in the textarea element.
+ * The data should be a JSON object with a single property, "pokemonList", which
+ * contains an array of pokemon objects. Each pokemon object should have the
+ * following properties: id, name, and variants. The variants property should be
+ * an array of variant objects, each with the following properties: type and caught.
+ * The caught property should be a boolean indicating whether the variant has been
+ * caught or not.
  */
 function importPokedexData() {
 	const text = textarea.value;
@@ -240,21 +244,34 @@ function importPokedexData() {
 		// Parse the decoded text as JSON
 		const pokedexData = JSON.parse(base64Data);
 
-		// Validate the structure of the imported JSON data
-		if (!pokedexData || !pokedexData.pokemonList) {
-			throw new Error("Invalid JSON structure");
+		// Check if the data has the expected structure
+		if (!pokedexData.pokemonList || !Array.isArray(pokedexData.pokemonList)) {
+			throw new Error("Invalid data structure");
 		}
 
-		// Update the global Pokémon list with the imported data
-		pokemonList = pokedexData.pokemonList;
+		// Check if each pokemon object has the expected properties
+		pokedexData.pokemonList.forEach((pokemon) => {
+			if (!pokemon.id || !pokemon.name || !pokemon.variants) {
+				throw new Error("Invalid pokemon data");
+			}
+		});
 
-		// Save the updated Pokémon list to local storage
+		// Merge the imported data with the existing pokemonList data
+		pokedexData.pokemonList.forEach((importedPokemon) => {
+			const existingPokemon = pokemonList.find((pokemon) => pokemon.id === importedPokemon.id);
+			if (existingPokemon) {
+				// Update the existing pokemon's variants with the imported data
+				existingPokemon.variants = importedPokemon.variants;
+			}
+		});
+
+		// Save the updated pokemonList to local storage
 		saveProgress();
 
 		// Update the Pokémon counter display
 		updatePokemonCounter();
 
-		// Apply filters to the updated Pokémon list
+		// Apply filters to the updated pokemonList
 		filterPokemon();
 	} catch (error) {
 		// Display an error message in the textarea if the import fails
@@ -264,19 +281,37 @@ function importPokedexData() {
 }
 
 /**
- * Exports the current Pokémon data to the textarea in a base64 encoded string.
- * The exported data is a JSON object with a single property, "pokemonList", which
- * contains the list of Pokémon objects.
+ * Exports the caught Pokémon data to a base64 encoded string in the textarea element.
+ * The string represents a JSON object with a single property, "pokemonList", which
+ * contains an array of pokemon objects. Each pokemon object has the following
+ * properties: id, name, and variants. The variants property is an array of
+ * variant objects, each with the following properties: type and caught. The
+ * caught property is a boolean indicating whether the variant has been caught or
+ * not.
  */
 function exportPokedexData() {
+	// Get the list of caught Pokémon
+	const caughtPokemonList = pokemonList.filter((pokemon) => {
+		// Check if any variant of the Pokémon has been caught
+		return pokemon.variants.some((variant) => variant.caught);
+	}).map((pokemon) => {
+		// Create a new object with only the caught variants
+		return {
+			id: pokemon.id,
+			name: pokemon.name,
+			variants: pokemon.variants.filter((variant) => variant.caught),
+		};
+	});
+  
+	// Create a JSON object with the caught Pokémon data
 	const pokedexData = {
-		pokemonList: pokemonList,
+		pokemonList: caughtPokemonList,
 	};
-
+  
 	// Convert the JSON object to a base64 encoded string
 	const jsonData = JSON.stringify(pokedexData);
 	const base64Data = btoa(jsonData);
-
+  
 	// Set the value of the textarea to the base64 encoded string
 	textarea.value = base64Data;
 }
