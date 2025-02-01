@@ -10,6 +10,7 @@ let counterMode = "count";
 let showCaught = true;
 let caughtPokemon = 0
 let totalPokemon = 0
+let areasArray = {}
 
 // DOM elements ----------------------------------------------------------------
 const pokedex = document.getElementById("pokedex");
@@ -192,7 +193,11 @@ const loadPokemon = async () => {
 
 		// Update the Pokémon counter and apply filters to the list
 		updatePokemonCounter();
-		filterPokemon();
+
+		if (activeFilters.location || activeFilters.time || activeFilters.type || activeFilters.variant) {
+			filterPokemon();
+		}
+
 	} catch (error) {
 		// Log error and display error message on the page if there is an issue
 		console.error("Error loading Pokémon data:", error);
@@ -236,80 +241,57 @@ const saveProgress = () => {
  * caught or not.
  */
 function importPokedexData() {
-	const variantMap = {
-		0: "Normal",
-		1: "Dark",
-		2: "Mystic",
-		3: "Metallic",
-		4: "Shadow",
-		5: "Shiny"
-	  };
-	
-	const text = textarea.value;
 	try {
-	  // Decode the base64 encoded text
-	  const base64Data = atob(text);
-  
-	  // Parse the decoded text as JSON
-	  let pokedexData = JSON.parse(base64Data);
-
-	  const expandedData = pokedexData.map((pokemon) => {
-		return {
-		  id: pokemon.i,
-		  variants: pokemon.v.map((variant) => {
-			return {
-			  type: variantMap[variant.t],
-			  caught: variant.c
-			};
-		  })
-		};
-	  });
-
-	  pokedexData = {pokemonList: expandedData}
-	  
-	  // Check if the data has the expected structure
-	  if (!pokedexData.pokemonList || !Array.isArray(pokedexData.pokemonList)) {
-		throw new Error("Invalid data structure");
+	  const base64EncodedData = textarea.value;
+	  textarea.value = "";
+	  const gzipCompressedData = atob(base64EncodedData);
+	  const gzipCompressedArray = new Uint8Array(gzipCompressedData.length);
+	  for (let i = 0; i < gzipCompressedData.length; i++) {
+		gzipCompressedArray[i] = gzipCompressedData.charCodeAt(i);
 	  }
+	  const minifiedData = pako.ungzip(gzipCompressedArray);
+	  const decoder = new TextDecoder('utf-8');
+	  const decodedData = decoder.decode(minifiedData);
+	  let pokedexData = JSON.parse(decodedData);
+	  pokedexData = {pokemonList: pokedexData}
 
-	  // Check if each pokemon object has the expected properties
-	  pokedexData.pokemonList.forEach((pokemon) => {
-		if (!pokemon.id || !pokemon.variants) {
-		  throw new Error("Invalid pokemon data");
-		}
-	  });
-  
-	  // Merge the imported data with the existing pokemonList data
-	  pokedexData.pokemonList.forEach((importedPokemon) => {
-		const existingPokemon = pokemonList.find((pokemon) => pokemon.id === importedPokemon.id);
-		if (existingPokemon) {
-			// Find the variants that exist in the imported data
-			const importedVariantIds = importedPokemon.variants.map((variant) => variant.type);
-			const existingVariantIds = existingPokemon.variants.map((variant) => variant.type);
+	  	  // Check if each pokemon object has the expected properties
+			pokedexData.pokemonList.forEach((pokemon) => {
+				if (!pokemon.id || !pokemon.variants) {
+					textarea.value = "Invalid pokemon data";
+					throw new Error("Invalid pokemon data");
+				}
+			  });
 		  
-			// Update the existing variants with the imported values
-			existingPokemon.variants = existingPokemon.variants.map((variant) => {
-			  if (importedVariantIds.includes(variant.type)) {
-				const importedVariant = importedPokemon.variants.find((v) => v.type === variant.type);
-				return { ...variant, caught: importedVariant.caught };
-			  }
-			  return variant;
-			});
-		  }
-	  });
-  
-	  // Save the updated pokemonList to local storage
-	  saveProgress();
-  
-	  // Update the Pokémon counter display
-	  updatePokemonCounter();
-  
-	  // Apply filters to the updated pokemonList
-	  filterPokemon();
+			  // Merge the imported data with the existing pokemonList data
+			  pokedexData.pokemonList.forEach((importedPokemon) => {
+				const existingPokemon = pokemonList.find((pokemon) => pokemon.id === importedPokemon.id);
+				if (existingPokemon) {
+					// Find the variants that exist in the imported data
+					const importedVariantIds = importedPokemon.variants.map((variant) => variant.type);
+					const existingVariantIds = existingPokemon.variants.map((variant) => variant.type);
+				  
+					// Update the existing variants with the imported values
+					existingPokemon.variants = existingPokemon.variants.map((variant) => {
+					  if (importedVariantIds.includes(variant.type)) {
+						const importedVariant = importedPokemon.variants.find((v) => v.type === variant.type);
+						return { ...variant, caught: importedVariant.caught };
+					  }
+					  return variant;
+					});
+				  }
+			  });
+
+			  // Save the updated pokemonList to local storage
+			  saveProgress();
+			  // Update the Pokémon counter display
+			  updatePokemonCounter();
+			  // Apply filters to the updated pokemonList
+			  filterPokemon();
+
 	} catch (error) {
-	  // Display an error message in the textarea if the import fails
-	  textarea.value = "Invalid import data. Please try again.";
-	  console.error("Error importing Pokedex data:", error);
+	  textarea.value = `Invalid pokemon data\nSee console for details`;
+	  console.error('Error importing Pokémon data:', error);
 	}
   }
 
@@ -323,15 +305,7 @@ function importPokedexData() {
  * not.
  */
 function exportPokedexData() {
-	const variantMap = {
-		"Normal": 0,
-		"Dark": 1,
-		"Mystic": 2,
-		"Metallic": 3,
-		"Shadow": 4,
-		"Shiny": 5
-	  };
-	
+
 	// Get the list of caught Pokémon
 	const caughtPokemonList = pokemonList.filter((pokemon) => {
 		// Check if any variant of the Pokémon has been caught
@@ -343,25 +317,13 @@ function exportPokedexData() {
 			variants: pokemon.variants.filter((variant) => variant.caught),
 		};
 	});
-  
-	const simplifiedData = caughtPokemonList.map((pokemon) => {
-		return {
-		  i: pokemon.id,
-		  v: pokemon.variants.map((variant) => {
-			return {
-			  t: variantMap[variant.type],
-			  c: variant.caught
-			};
-		  })
-		};
-	  });
 
-	// Convert the JSON object to a base64 encoded string
-	const jsonData = JSON.stringify(simplifiedData);
-	const base64Data = btoa(jsonData);
+	const minifiedData = JSON.stringify(caughtPokemonList).replace(/\s+/g, '');
+	const gzipCompressedData = pako.gzip(minifiedData);
+	const base64EncodedData = btoa(String.fromCharCode.apply(null, gzipCompressedData));
   
 	// Set the value of the textarea to the base64 encoded string
-	textarea.value = base64Data;
+	textarea.value = base64EncodedData;
 }
 
 //Filters and Display -------------------------------------------------
@@ -376,21 +338,18 @@ const filterPokemon = () => {
 		return;
 	}
 
-	// Get the filtered list of Pokémon evolution lines
-	const filteredEvolutionLines = getFilteredLines();
-	// Convert evolution lines into a display list of Pokémon
-	const displayList = getDisplayList(filteredEvolutionLines);
+	// Get the filtered list of Pokémon evolution lines and convert them to display list
+	const displayList = getDisplayList(getFilteredLines());
 
-	// Filter the display list based on the selected variant type
-	const variantFilteredList = activeFilters.variant ? displayList.filter((pokemon) =>
-		pokemon.variants.some((variant) => variant.type === activeFilters.variant)
+	// Apply variant filter if active
+	const variantFilteredList = activeFilters.variant ? displayList.filter(pokemon =>
+		pokemon.variants.some(variant => variant.type === activeFilters.variant)
 	) : displayList;
 
 	// Calculate area probability if all filters are active and there are Pokémon to display
 	if (activeFilters.location && activeFilters.time && activeFilters.type && variantFilteredList.length > 0) {
 		areaProbability(variantFilteredList);
 	} else {
-		// Hide route probability and completion statistics if conditions are not met
 		document.getElementById("routeProbability").style.display = "none";
 		document.getElementById("routeCompletion").style.display = "none";
 	}
@@ -398,20 +357,16 @@ const filterPokemon = () => {
 	// Update the display with the filtered Pokémon list
 	displayPokemon(variantFilteredList);
 
-	// Iterate through each variant group to update the display based on caught status
-	const variantGroups = document.querySelectorAll(".variant-group");
-	variantGroups.forEach((group) => {
-		const caughtCards = group.querySelectorAll(".pokemon-card.caught");
+	// Update variant group display based on the caught status
+	document.querySelectorAll(".variant-group").forEach(group => {
 		const allCards = group.querySelectorAll(".pokemon-card");
-
-		// Hide the group if all Pokémon are caught and caught Pokémon are not shown
-		group.style.display = (caughtCards.length === allCards.length && !showCaught) ? "none" : "block";
+		const allCaught = Array.from(allCards).every(card => card.classList.contains("caught"));
+		group.style.display = (allCaught && !showCaught) ? "none" : "block";
 	});
 
 	// Hide all caught Pokémon cards if the showCaught flag is false
 	if (!showCaught) {
-		const caughtCards = document.querySelectorAll(".pokemon-card.caught");
-		caughtCards.forEach((card) => {
+		document.querySelectorAll(".pokemon-card.caught").forEach(card => {
 			card.style.display = "none";
 		});
 	}
@@ -445,7 +400,6 @@ const getDisplayList = (filteredLines) => {
 
 		// Add each evolution to the stages list
 		evoChains.forEach((pokemon) => stages.push(pokemon));
-		console.log("stage:", stages);
 		return stages;
 	});
 };
@@ -632,129 +586,6 @@ const toggleCaughtVisibility = () => {
 
 //Counters ---------------------------------------------------------------
 /**
- * Calculates the probability of encountering uncaught Pokémon in a specific area
- * based on active filters and updates the display with the calculated probabilities
- * and completion statistics.
- * 
- * @param {Array} areaPokemon - List of Pokémon present in the specified area.
- */
-const areaProbability = (areaPokemon) => {
-	// Probability values for each rarity type
-	const rarityProbabilities = {
-		"Common": 1,
-		"Rare": 0.005,
-		"Legendary": 0.001,
-		"Ultra Beast": 0.0001
-	};
-
-	// Modifier values for common Pokémon variants
-	const commonModifiers = {
-		"Normal": 0.92,
-		"Shiny": 0.01,
-		"Dark": 0.02,
-		"Mystic": 0.02,
-		"Metallic": 0.02,
-		"Shadow": 0.01,
-	};
-
-	// Modifier values for rare Pokémon variants
-	const rareModifiers = {
-		"Normal": 0.6,
-		"Shiny": 0.05,
-		"Dark": 0.1,
-		"Mystic": 0.1,
-		"Metallic": 0.1,
-		"Shadow": 0.05,
-	};
-
-	// Filter Pokémon by location if a location filter is active
-	const filteredByLocation = activeFilters.location ?
-		areaPokemon.filter((pokemon) =>
-			pokemon.locations.some((location) => location.place === activeFilters.location)
-		) : areaPokemon;
-
-	// Filter for Pokémon that are uncaught and match all active filters
-	const uncaughtPokemon = filteredByLocation.filter((pokemon) =>
-		pokemon.variants.some((variant) => !variant.caught) && tripleFilter(pokemon)
-	);
-
-	// Hide probability and completion display if there are no uncaught Pokémon
-	if (uncaughtPokemon.length === 0) {
-		document.getElementById("routeProbability").style.display = "none";
-		document.getElementById("routeCompletion").style.display = "none";
-		return;
-	}
-
-	let commonProb = 1;
-
-	// Calculate total number of rare and common Pokémon
-	const totalRares = filteredByLocation.filter((pokemon) =>
-		pokemon.rarity === "Rare" ||
-		(pokemon.previousForms.length > 0 && tripleFilter(pokemon))).length;
-
-	const totalCommons = filteredByLocation.filter((pokemon) =>
-		pokemon.rarity === "Common" && pokemon.previousForms.length === 0).length;
-
-	// Adjust common probability based on presence of rarer Pokémon
-	if (totalRares > 0) commonProb -= rarityProbabilities["Rare"];
-	if (filteredByLocation.some((pokemon) => pokemon.rarity === "Legendary")) commonProb -= rarityProbabilities["Legendary"];
-	if (filteredByLocation.some((pokemon) => pokemon.rarity === "Ultra Beast")) commonProb -= rarityProbabilities["Ultra Beast"];
-
-	rarityProbabilities["Common"] = commonProb;
-
-	let routeProbability = 0;
-
-	// Calculate the probability for each uncaught Pokémon
-	uncaughtPokemon.forEach((pokemon) => {
-		let pokemonProbability = 0;
-		let encounterRarity = pokemon.rarity;
-
-		// Determine encounter rarity for high level common Pokémon
-		if (pokemon.rarity === "Common" && pokemon.previousForms.length > 0) encounterRarity = "Rare";
-
-		pokemonProbability = rarityProbabilities[encounterRarity];
-
-		// Adjust probability based on total number of common or rare Pokémon
-		if (encounterRarity === "Common" && totalCommons > 0) {
-			pokemonProbability /= totalCommons;
-		} else if (encounterRarity === "Rare" && totalRares > 0) {
-			pokemonProbability /= totalRares;
-		}
-
-		// Select appropriate modifiers based on encounter rarity
-		let selectedModifiers = encounterRarity === "Common" ? commonModifiers : rareModifiers;
-
-		// Calculate probability contribution for each uncaught variant
-		pokemon.variants.forEach((variant) => {
-			if (!variant.caught) {
-				routeProbability += pokemonProbability * selectedModifiers[variant.type];
-			}
-		});
-	});
-
-	// Calculate and round the final route probability
-	routeProbability = 1 / routeProbability;
-	routeProbability = Math.round(routeProbability);
-
-	// Update total and caught Pokémon counts
-	totalPokemon = areaPokemon.length * 6;
-	caughtPokemon = 0;
-	areaPokemon.forEach((pokemon) => {
-		pokemon.variants.forEach((variant) => {
-			if (variant.caught) {
-				caughtPokemon += 1;
-			}
-		});
-	});
-
-	// Display probability and completion statistics
-	document.getElementById("routeCompletion").style.display = "block";
-	document.getElementById("routeProbability").style.display = "block";
-	document.getElementById("routeProbability").textContent = `Route Chance: 1 in ${routeProbability}`;
-	updateRouteCounter();
-};
-
-/**
  * Updates the display of the Overall Pokémon counter based on the current value of
  * `counterMode`.
  * 
@@ -832,6 +663,304 @@ document.getElementById("statsDisplayButton").addEventListener("click", () => {
 	updateRouteCounter();
 });
 
+document.getElementById("recommendedRouteButton").addEventListener("click", recommendedRoute);
+
+// Areas and Probabilities -------------------------------------------------------------
+/**
+ * Finds the optimal route based on the active filters and updates the filters and
+ * the Pokémon display accordingly.
+ */
+function recommendedRoute() {
+	// Sort the areasArray based on the activeFilters.type
+	const sortedAreas = areasArray.sort((a, b) => {
+	  const locationA = a.name;
+	  const locationB = b.name;
+	  const regex = new RegExp(/^Route \d+$/i);
+  
+	  if (regex.test(locationA)) {
+		if (regex.test(locationB)) {
+		  // Compare the route numbers
+		  return parseInt(locationA.match(/\d+/)) - parseInt(locationB.match(/\d+/));
+		} else {
+		  // Sort routes before other locations
+		  return -1;
+		}
+	  } else {
+		if (regex.test(locationB)) {
+		  // Sort other locations after routes
+		  return 1;
+		} else {
+		  // Sort other locations alphabetically
+		  return locationA.localeCompare(locationB);
+		}
+	  }
+	});
+
+  let matchingRoutes = [];
+
+	const timeValues = sortedAreas.map((area) => {
+		const landTime = area.types.Land || {};
+		const waterTime = area.types.Water || {};
+		const time = { ...landTime, ...waterTime };
+		return activeFilters.time === "" ? Math.min(...Object.values(time)) : time[activeFilters.time];
+	});
+	  
+	const minTimeValue = Math.min(...timeValues);
+	
+	matchingRoutes = sortedAreas.filter((area) => {
+		const landTime = area.types.Land || {};
+		const waterTime = area.types.Water || {};
+		const time = { ...landTime, ...waterTime };
+		return activeFilters.time === "" ? Math.min(...Object.values(time)) === minTimeValue : time[activeFilters.time] === minTimeValue;
+	  });
+	
+	let optimalRoute = matchingRoutes[0]
+	const minType = Object.keys(optimalRoute.types).reduce((a, b) => optimalRoute.types[a] < optimalRoute.types[b] ? a : b); 
+	
+	if (activeFilters.time === "") {
+		const minTime = Object.keys(optimalRoute.types[minType]).reduce((a, b) => optimalRoute.types[minType][a] < optimalRoute.types[minType][b] ? a : b);
+		activeFilters.time = minTime;
+	  }
+
+	activeFilters.location = matchingRoutes[0].name
+	activeFilters.type = minType
+
+		// Update the type dropdown
+	typeFilter.value = activeFilters.type;
+
+	// Update the time dropdown
+	timeFilter.value = activeFilters.time;
+
+	// Update the location dropdown
+	locationFilter.value = activeFilters.location;
+	filterPokemon();
+	}
+/**
+ * Generates an array of objects representing areas in the game.
+ *
+ * Each object in the array has a "name" property with the name of the area,
+ * and a "types" property which is an object with type names as keys and
+ * objects with time of day as keys and a count of 0 as values.
+ *
+ * @returns {Array} - An array of objects representing areas in the game.
+ */
+function generateAreasArray() {
+	const areas = {};
+
+	// Loop through all the pokemon and their locations
+	pokemonList.forEach((pokemon) => {
+		pokemon.locations.forEach((location) => {
+			const routeName = location.place;
+			const routeType = location.type;
+			const timeOfDay = location.time;
+
+			// If the area doesn't exist in the object, add it
+			if (!areas[routeName]) {
+				areas[routeName] = {};
+			}
+
+			// If the type doesn't exist in the area, add it
+			if (!areas[routeName][routeType]) {
+				areas[routeName][routeType] = {};
+			}
+
+			// If the time of day doesn't exist in the type, add it
+			if (!areas[routeName][routeType][timeOfDay]) {
+				areas[routeName][routeType][timeOfDay] = 0;
+			}
+		});
+	});
+
+	// Convert the object to an array of objects
+	const areasArray = Object.keys(areas).map((routeName) => {
+		const routeTypes = Object.keys(areas[routeName]).map((routeType) => {
+			const timesOfDay = Object.keys(areas[routeName][routeType]).map((timeOfDay) => {
+				return { [timeOfDay]: 0 };
+			});
+
+			return { [routeType]: Object.assign({}, ...timesOfDay) };
+		});
+
+		return { name: routeName, types: Object.assign({}, ...routeTypes) };
+	});
+
+	return areasArray;
+}
+
+/**
+ * Calculates the probability for each area, type, and time combination 
+ * and updates the areasArray with the calculated probabilities.
+ */
+function allProbabilities() {
+	// Iterate over each area in the areasArray
+	areasArray.forEach((area) => {
+		// Iterate over each type within the area
+		Object.keys(area.types).forEach((type) => {
+			// Iterate over each time of day within the type
+			Object.keys(area.types[type]).forEach((timeOfDay) => {
+				// Filter the Pokémon list to match the current area, type, and time of day
+				const filteredPokemonList = pokemonList.filter((pokemon) => {
+					return pokemon.locations.some((location) => {
+						const matchesRoute = location.place === area.name;
+						const matchesType = location.type === type;
+						const matchesTime = location.time === timeOfDay;
+
+						return matchesRoute && matchesType && matchesTime;
+					});
+				});
+
+				// Calculate the probability for the current filters
+				const probability = calculateProbability(filteredPokemonList);
+				// Update the areasArray with the calculated probability
+				area.types[type][timeOfDay] = probability;
+			});
+		});
+	});
+}
+
+/**
+ * Calculates the probability of encountering a Pokémon based on the rarity of the Pokémon, the 
+ * presence of other Pokémon of the same rarity, and the modifiers for each variant type.
+ * 
+ * @param {Array} pokemonList - The list of Pokémon to calculate the probability for.
+ * @param {Array} filteredPokemonList - The filtered list of Pokémon that match all active filters.
+ * 
+ * @returns {Number} The calculated probability of encountering a Pokémon.
+ */
+function calculateProbability(filteredPokemonList) {
+	// Probability values for each rarity type
+	const rarityProbabilities = {
+		"Common": 1,
+		"Rare": 0.005,
+		"Legendary": 0.001,
+		"Ultra Beast": 0.0001
+	};
+
+	// Modifier values for common Pokémon variants
+	const commonModifiers = {
+		"Normal": 0.92,
+		"Shiny": 0.01,
+		"Dark": 0.02,
+		"Mystic": 0.02,
+		"Metallic": 0.02,
+		"Shadow": 0.01,
+	};
+
+	// Modifier values for rare Pokémon variants
+	const rareModifiers = {
+		"Normal": 0.6,
+		"Shiny": 0.05,
+		"Dark": 0.1,
+		"Mystic": 0.1,
+		"Metallic": 0.1,
+		"Shadow": 0.05,
+	};
+
+	// Filter for Pokémon that are uncaught and match all active filters
+	const uncaughtPokemon = filteredPokemonList.filter((pokemon) =>
+		pokemon.variants.some((variant) => !variant.caught)
+	);
+
+	let routeProbability = 0;
+
+	// Hide probability and completion display if there are no uncaught Pokémon
+	if (uncaughtPokemon.length === 0) {
+		return;
+	}
+
+	let commonProb = 1;
+
+	// Calculate total number of rare and common Pokémon
+	const totalRares = filteredPokemonList.filter((pokemon) =>
+		pokemon.rarity === "Rare" ||
+		(pokemon.previousForms.length > 0 && tripleFilter(pokemon))).length;
+
+	const totalCommons = filteredPokemonList.filter((pokemon) =>
+		pokemon.rarity === "Common" && pokemon.previousForms.length === 0).length;
+
+	// Adjust common probability based on presence of rarer Pokémon
+	if (totalRares > 0) commonProb -= rarityProbabilities["Rare"];
+	if (filteredPokemonList.some((pokemon) => pokemon.rarity === "Legendary")) commonProb -= rarityProbabilities["Legendary"];
+	if (filteredPokemonList.some((pokemon) => pokemon.rarity === "Ultra Beast")) commonProb -= rarityProbabilities["Ultra Beast"];
+
+	rarityProbabilities["Common"] = commonProb;
+
+	// Calculate the probability for each uncaught Pokémon
+	uncaughtPokemon.forEach((pokemon) => {
+		let pokemonProbability = 0;
+		let encounterRarity = pokemon.rarity;
+
+		// Determine encounter rarity for high level common Pokémon
+		if (pokemon.rarity === "Common" && pokemon.previousForms.length > 0) encounterRarity = "Rare";
+
+		pokemonProbability = rarityProbabilities[encounterRarity];
+
+		// Adjust probability based on total number of common or rare Pokémon
+		if (encounterRarity === "Common" && totalCommons > 0) {
+			pokemonProbability /= totalCommons;
+		} else if (encounterRarity === "Rare" && totalRares > 0) {
+			pokemonProbability /= totalRares;
+		}
+
+		// Select appropriate modifiers based on encounter rarity
+		let selectedModifiers = encounterRarity === "Common" ? commonModifiers : rareModifiers;
+
+		// Calculate probability contribution for each uncaught variant
+		pokemon.variants.forEach((variant) => {
+			if (!variant.caught) {
+				routeProbability += pokemonProbability * selectedModifiers[variant.type];
+			}
+		});
+	});
+
+	// Calculate and round the final route probability
+	routeProbability = 1 / routeProbability;
+	routeProbability = Math.round(routeProbability);
+	return routeProbability;
+}
+
+/**
+ * Calculates the probability of encountering all Pokémon in a given area.
+ * Updates the areasArray with the calculated probability and displays
+ * the probability and completion statistics.
+ * 
+ * @param {Array} areaPokemon - The list of Pokémon in the area.
+ */
+const areaProbability = (areaPokemon) => {	
+	let filteredPokemonList = areaPokemon;
+	filteredPokemonList = filteredPokemonList.filter(tripleFilter);
+	
+	// Calculate the route probability
+	let routeProbability = calculateProbability(filteredPokemonList);
+
+	// Update the areasArray with the calculated probability
+	let area = areasArray.find(area => area.name === activeFilters.location);
+	area = area.types[activeFilters.type];
+	area[activeFilters.time] = routeProbability;
+
+	// Update total and caught Pokémon counts
+	totalPokemon = areaPokemon.length * 6;
+	caughtPokemon = 0;
+	areaPokemon.forEach((pokemon) => {
+		pokemon.variants.forEach((variant) => {
+			if (variant.caught) {
+				caughtPokemon += 1;
+			}
+		});
+	});
+
+	// Display probability and completion statistics
+	document.getElementById("routeCompletion").style.display = "block";
+	document.getElementById("routeProbability").style.display = "block";
+	document.getElementById("routeProbability").textContent = `Route Chance: 1 in ${routeProbability}`;
+	updateRouteCounter();
+};
+
+
+
+
+
+
 window.onload = () => {
 	loadPokemon().then(() => {
 		// Add event listeners to the buttons
@@ -843,5 +972,7 @@ window.onload = () => {
 
 		// Populate the time, type, and variant filter dropdowns with options
 		populateFilterDropdowns();
+		areasArray = generateAreasArray();
+		allProbabilities();
 	});
 };
