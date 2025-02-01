@@ -26,6 +26,7 @@
       <div class="buttons">
       <button id="settings-toggle">Settings</button>
       <button id="toggleCaughtButton">Hide Caught Pokémon</button>
+      <button id="recommendedRouteButton">Recommended Route</button>
     </div>
     <div class="Stats">
       <p id="pokemonCounter">Caught: 0 / 0</p>
@@ -38,7 +39,7 @@
   <div id="settings-menu" style="display: none;">
     <h2><u>Settings</u></h2>
     <button id="clearProgressButton">Clear Progress</button>
-    <button id="statsDisplayButton">Stats Display</button>
+    <button id="statsDisplayButton">Stats Display: Count</button>
     <div>
     <textarea id="import-export-textarea" rows="10" cols="50"></textarea>
     </div>
@@ -50,6 +51,7 @@
   <div id="settings-overlay"></div>
   <main id="pokedex">
 </main>
+  <script src="https://cdn.jsdelivr.net/npm/pako@2.0.3/dist/pako.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
