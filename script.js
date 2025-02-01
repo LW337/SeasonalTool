@@ -671,6 +671,7 @@ document.getElementById("recommendedRouteButton").addEventListener("click", reco
  * the Pokémon display accordingly.
  */
 function recommendedRoute() {
+	console.log("Clicked")
 	// Sort the areasArray based on the activeFilters.type
 	const sortedAreas = areasArray.sort((a, b) => {
 	  const locationA = a.name;
@@ -695,7 +696,9 @@ function recommendedRoute() {
 		}
 	  }
 	});
-
+  console.log(sortedAreas)
+  
+	
   let matchingRoutes = [];
 
 	const timeValues = sortedAreas.map((area) => {
@@ -721,7 +724,7 @@ function recommendedRoute() {
 		const minTime = Object.keys(optimalRoute.types[minType]).reduce((a, b) => optimalRoute.types[minType][a] < optimalRoute.types[minType][b] ? a : b);
 		activeFilters.time = minTime;
 	  }
-
+	console.log(optimalRoute)
 	activeFilters.location = matchingRoutes[0].name
 	activeFilters.type = minType
 
