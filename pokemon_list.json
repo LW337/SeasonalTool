@@ -8047,6 +8047,11 @@
                 "place": "Route 20",
                 "time": "Day",
                 "type": "Land"
+            },
+            {
+                "place": "Wild Overgrowth",
+                "time": "Day",
+                "type": "Land"
             }
         ],
         "previousForms": []
@@ -18842,7 +18847,7 @@
         ],
         "locations": [],
         "previousForms": [
-            426
+            426,427,428
         ]
     },
     {
@@ -34842,7 +34847,7 @@
             {
                 "place": "Route 24",
                 "time": "Night",
-                "type": "Water"
+                "type": "Land"
             },
             {
                 "place": "Route 25",
