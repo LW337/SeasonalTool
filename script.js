@@ -715,10 +715,12 @@ function recommendedRoute() {
 	  });
 	
 	let optimalRoute = matchingRoutes[0]
-	const minType = Object.keys(optimalRoute.types).reduce((a, b) => optimalRoute.types[a] < optimalRoute.types[b] ? a : b); 
-	
+	const minType = Object.keys(optimalRoute.types).reduce((minKey, currentKey) => 
+		Math.min(optimalRoute.types[minKey][activeFilters.time], optimalRoute.types[currentKey][activeFilters.time]) === optimalRoute.types[currentKey][activeFilters.time] ? currentKey : minKey
+	  );	console.log(optimalRoute)
+	  
 	if (activeFilters.time === "") {
-		const minTime = Object.keys(optimalRoute.types[minType]).reduce((a, b) => optimalRoute.types[minType][a] < optimalRoute.types[minType][b] ? a : b);
+		const minTime = Object.keys(optimalRoute.types[minType]).find(time => optimalRoute.types[minType][time] === Math.min(...Object.values(optimalRoute.types[minType])));
 		activeFilters.time = minTime;
 	  }
 
