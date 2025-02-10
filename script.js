@@ -704,24 +704,25 @@ function recommendedRoute() {
     let matchingRoutes = [];
 
     const timeValues = sortedAreas.map((area) => {
-        const landTime = area.types.Land || {};
-        const waterTime = area.types.Water || {};
-        if (Object.keys(landTime).length === 0 || Object.keys(waterTime).length === 0) {
-            time = {
-                ...landTime,
-                ...waterTime
-            };
-        } else {
-            const landMinTime = activeFilters.time === "" ? Math.min(...Object.values(landTime)) : landTime[activeFilters.time];
-            const waterMinTime = activeFilters.time === "" ? Math.min(...Object.values(waterTime)) : waterTime[activeFilters.time];
-            time = landMinTime < waterMinTime ? landTime : waterTime;
-        }
-
-        return activeFilters.time === "" ? Math.min(...Object.values(time)) : time[activeFilters.time];
-    });
+		const landTime = area.types.Land || {};
+		const waterTime = area.types.Water || {};
+		if (Object.keys(landTime).length === 0 || Object.keys(waterTime).length === 0) {
+			time = {
+				...landTime,
+				...waterTime
+			};
+		} else {
+			const landMinTime = activeFilters.time === "" ? Math.min(...Object.values(landTime)) : landTime[activeFilters.time];
+			const waterMinTime = activeFilters.time === "" ? Math.min(...Object.values(waterTime)) : waterTime[activeFilters.time];
+			time = landMinTime < waterMinTime ? landTime : waterTime;
+		}
+	
+		const value = activeFilters.time === "" ? Math.min(...Object.values(time)) : time[activeFilters.time];
+		return isNaN(value) ? null : value; // filter out NaN values
+	}).filter((value) => value !== null); // remove null values from the array
 
     const minTimeValue = Math.min(...timeValues);
-
+	
     matchingRoutes = sortedAreas.filter((area) => {
         const landTime = area.types.Land || {};
         const waterTime = area.types.Water || {};
@@ -985,12 +986,16 @@ const areaProbability = (areaPokemon) => {
 
     // Display probability and completion statistics
     document.getElementById("routeCompletion").style.display = "block";
-    document.getElementById("routeProbability").style.display = "block";
-    document.getElementById("routeProbability").textContent = `Route Chance: 1 in ${routeProbability}`;
+	
+	if (routeProbability != undefined) {
+		document.getElementById("routeProbability").style.display = "block";
+		document.getElementById("routeProbability").textContent = `Route Chance: 1 in ${routeProbability}`;
+	} else {
+		document.getElementById("routeProbability").style.display = "none";
+	}
+    
     updateRouteCounter();
 };
-
-
 
 
 window.onload = () => {
