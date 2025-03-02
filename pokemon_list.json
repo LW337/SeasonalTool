@@ -33153,6 +33153,11 @@
                 "place": "Route 24",
                 "time": "Day",
                 "type": "Water"
+            },
+            {
+                "place": "Route 7",
+                "time": "Night",
+                "type": "Water"
             }
         ],
         "previousForms": []
@@ -33194,6 +33199,11 @@
                 "type": "Water"
             },
             {
+                "place": "Shore's End",
+                "time": "Night",
+                "type": "Water"
+            },
+            {
                 "place": "Stillwater Quarry",
                 "time": "Night",
                 "type": "Water"
@@ -33202,51 +33212,7 @@
                 "place": "The Quays",
                 "time": "Day",
                 "type": "Water"
-            },
-            {
-                "place": "Route 7",
-                "time": "Day",
-                "type": "Water"
-            }
-        ],
-        "previousForms": []
-    },
-    {
-        "id": 786,
-        "name": "Wishiwashi (Solo)",
-        "rarity": "Common",
-        "variants": [
-            {
-                "type": "Normal",
-                "caught": false
-            },
-            {
-                "type": "Dark",
-                "caught": false
-            },
-            {
-                "type": "Mystic",
-                "caught": false
-            },
-            {
-                "type": "Metallic",
-                "caught": false
-            },
-            {
-                "type": "Shadow",
-                "caught": false
-            },
-            {
-                "type": "Shiny",
-                "caught": false
-            }
-        ],
-        "locations": [
-            {
-                "place": "Shore's End",
-                "time": "Night",
-                "type": "Water"
-            },
+            },            
             {
                 "place": "The Quays",
                 "time": "Night",
@@ -33254,7 +33220,7 @@
             },
             {
                 "place": "Route 7",
-                "time": "Night",
+                "time": "Day",
                 "type": "Water"
             }
         ],
@@ -33393,6 +33359,11 @@
             {
                 "place": "Mudbray Ranch",
                 "time": "Day",
+                "type": "Land"
+            },
+            {
+                "place": "Mudbray Ranch",
+                "time": "Night",
                 "type": "Land"
             }
         ],
