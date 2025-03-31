@@ -989,6 +989,11 @@
                 "type": "Land"
             },
             {
+                "place": "Steelmouth Plant (Bottom)",
+                "time": "Day",
+                "type": "Land"
+            },
+            {
                 "place": "Vortex Citadel",
                 "time": "Day",
                 "type": "Land"
@@ -1005,6 +1010,11 @@
             },
             {
                 "place": "Steelmouth Plant (Top)",
+                "time": "Night",
+                "type": "Land"
+            },
+            {
+                "place": "Steelmouth Plant (Bottom)",
                 "time": "Night",
                 "type": "Land"
             }
@@ -19556,7 +19566,6 @@
             }
         ],
         "previousForms": [
-            448
         ]
     },
     {
