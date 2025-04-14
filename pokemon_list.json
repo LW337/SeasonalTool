@@ -38709,6 +38709,11 @@
                 "place": "Shore's End",
                 "time": "Night",
                 "type": "Land"
+            },
+            {
+                "place": "Stillwater Quarry",
+                "time": "Day",
+                "type": "Land"
             }
         ],
         "previousForms": []
