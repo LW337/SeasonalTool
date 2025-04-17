@@ -377,17 +377,18 @@ const filterPokemon = () => {
         });
     }
 
-	displayList.forEach(pokemon => {
-	        if (
-	            pokemon.previousForms.length > 0 &&
-	            pokemon.variants.every(variant => variant.caught)
-	        ) {
-	            if (!lastCompletedEvos.has(pokemon.id)) {
-	                console.log(pokemon.name);
-	                lastCompletedEvos.add(pokemon.id);
-	            }   
-	        }
-	    }
+    // Log all completed Evos
+    displayList.forEach(pokemon => {
+        if (
+            pokemon.previousForms.length > 0 &&
+            pokemon.variants.every(variant => variant.caught)
+        ) {
+            if (!lastCompletedEvos.has(pokemon.id)) {
+                console.log(pokemon.name);
+                lastCompletedEvos.add(pokemon.id);
+            }   
+        }
+    });
 };
 
 /**
@@ -460,7 +461,6 @@ const getEvolutionRows = (pokemonList, variantType) => {
 
             // Get the selected variant for the current Pokémon
             const selectedVariant = pokemon.variants.find(v => v.type === variantType);
-
             return `
                 <td>
                     <div class="pokemon-card ${selectedVariant?.caught ? "caught" : ""}"
