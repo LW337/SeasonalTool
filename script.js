@@ -415,7 +415,7 @@ const getDisplayList = (filteredLines) => {
  * @param {Array} pokemonList - The list of Pokémon to generate evolution lines for.
  * @returns {Array} - An array of evolution lines, where each line is a list of Pokémon.
  */
-const getEvolutionRows = (pokemonList, variantNum) => {
+const getEvolutionRows = (pokemonList, variantType) => {
     const baseForms = pokemonList.filter((pokemon) => pokemon.previousForms.length === 0);
 
     const evolutionLines = baseForms.map((baseForm) => {
@@ -446,7 +446,7 @@ const getEvolutionRows = (pokemonList, variantNum) => {
             if (!pokemon) return `<td></td>`;
 
             // Get the selected variant for the current Pokémon
-            const selectedVariant = pokemon.variants[variantNum];
+            const selectedVariant = pokemon.variants.find(v => v.type === variantType);
 
             return `
                 <td>
@@ -469,7 +469,7 @@ const getEvolutionRows = (pokemonList, variantNum) => {
  * @param {Array} list - The list of Pokémon to display.
  */
 const displayPokemon = (list) => {
-    const variantOrder = ["Normal", "Dark", "Mystic", "Metallic", "Shadow", "Shiny"];
+    const variantOrder = ["Normal","Shiny", "Dark", "Mystic", "Metallic", "Shadow"];
     const rarityOrder = ["Common", "Rare", "Legendary", "Ultra Beast"];
 
     // Group Pokémon by variant type and sort within each group by rarity
@@ -502,7 +502,6 @@ const displayPokemon = (list) => {
         // Filter out groups if a specific variant filter is active
         if (activeFilters.variant !== "" && activeFilters.variant !== variantGroup.type) return;
 
-        const variantReference = variantOrder.findIndex(x => x === variantGroup.type);
         const groupDiv = document.createElement("div");
         groupDiv.className = "variant-group";
         groupDiv.innerHTML = `
@@ -516,7 +515,7 @@ const displayPokemon = (list) => {
                     <th></th>
                     <th></th>
                 </tr>
-                ${getEvolutionRows(variantGroup.pokemons, variantReference)}
+                ${getEvolutionRows(variantGroup.pokemons, variantGroup.type)}
             </table>
         `;
         fragment.appendChild(groupDiv);
