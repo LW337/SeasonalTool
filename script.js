@@ -11,6 +11,7 @@ let showCaught = true;
 let caughtPokemon = 0
 let totalPokemon = 0
 let areasArray = {}
+let lastCompletedEvos = new Set();
 
 // DOM elements ----------------------------------------------------------------
 const pokedex = document.getElementById("pokedex");
@@ -375,6 +376,18 @@ const filterPokemon = () => {
             card.style.display = "none";
         });
     }
+
+	displayList.forEach(pokemon => {
+	        if (
+	            pokemon.previousForms.length > 0 &&
+	            pokemon.variants.every(variant => variant.caught)
+	        ) {
+	            if (!lastCompletedEvos.has(pokemon.id)) {
+	                console.log(pokemon.name);
+	                lastCompletedEvos.add(pokemon.id);
+	            }   
+	        }
+	    }
 };
 
 /**
