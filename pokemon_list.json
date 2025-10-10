@@ -35857,7 +35857,13 @@
                 "place": "Route 24",
                 "time": "Day",
                 "type": "Water"
+            },
+            {
+                "place": "Route 7",
+                "time": "Night",
+                "type": "Water"
             }
+            
         ],
         "previousForms": []
     },
@@ -35919,75 +35925,6 @@
             },
             {
                 "place": "The Quays",
-                "time": "Night",
-                "type": "Water"
-            }
-        ],
-        "previousForms": []
-    },
-    {
-        "id": 844,
-        "name": "Wishiwashi (Solo)",
-        "rarity": "Common",
-        "variants": [
-            {
-                "type": "Normal",
-                "caught": false
-            },
-            {
-                "type": "Dark",
-                "caught": false
-            },
-            {
-                "type": "Mystic",
-                "caught": false
-            },
-            {
-                "type": "Metallic",
-                "caught": false
-            },
-            {
-                "type": "Shadow",
-                "caught": false
-            },
-            {
-                "type": "Shiny",
-                "caught": false
-            }
-        ],
-        "locations": [
-            {
-                "place": "Shore's End",
-                "time": "Day",
-                "type": "Water"
-            },
-            {
-                "place": "Shore's End",
-                "time": "Night",
-                "type": "Water"
-            },
-            {
-                "place": "Stillwater Quarry",
-                "time": "Night",
-                "type": "Water"
-            },
-            {
-                "place": "The Quays",
-                "time": "Day",
-                "type": "Water"
-            },
-            {
-                "place": "The Quays",
-                "time": "Night",
-                "type": "Water"
-            },
-            {
-                "place": "Route 7",
-                "time": "Day",
-                "type": "Water"
-            },
-            {
-                "place": "Route 7",
                 "time": "Night",
                 "type": "Water"
             }
