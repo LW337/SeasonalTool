@@ -483,7 +483,7 @@ const getEvolutionRows = (pokemonList, variantType) => {
  */
 const displayPokemon = (list) => {
     const variantOrder = ["Normal","Shiny", "Dark", "Mystic", "Metallic", "Shadow"];
-    const rarityOrder = ["Common", "Rare", "Legendary", "Ultra Beast"];
+    const rarityOrder = ["Common", "Rare", "Legendary", "Ultra Beast","Paradox"];
 
     // Group Pokémon by variant type and sort within each group by rarity
     const sortedByVariant = variantOrder.map((variantType) => ({
@@ -880,7 +880,8 @@ function calculateProbability(filteredPokemonList) {
         "Common": 1,
         "Rare": 0.005,
         "Legendary": 0.001,
-        "Ultra Beast": 0.0001
+        "Ultra Beast": 0.0001,
+		"Paradox": 0.00005
     };
 
     // Modifier values for common Pokémon variants
@@ -929,6 +930,7 @@ function calculateProbability(filteredPokemonList) {
     if (totalRares > 0) commonProb -= rarityProbabilities["Rare"];
     if (filteredPokemonList.some((pokemon) => pokemon.rarity === "Legendary")) commonProb -= rarityProbabilities["Legendary"];
     if (filteredPokemonList.some((pokemon) => pokemon.rarity === "Ultra Beast")) commonProb -= rarityProbabilities["Ultra Beast"];
+	if (filteredPokemonList.some((pokemon) => pokemon.rarity === "Paradox")) commonProb -= rarityProbabilities["Paradox"];
 
     rarityProbabilities["Common"] = commonProb;
 
