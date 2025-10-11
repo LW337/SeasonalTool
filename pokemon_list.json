@@ -14784,28 +14784,8 @@
                 "type": "Land"
             },
             {
-                "place": "Route 1",
-                "time": "Night",
-                "type": "Land"
-            },
-            {
                 "place": "Route 18",
                 "time": "Night",
-                "type": "Land"
-            },
-            {
-                "place": "Route 2",
-                "time": "Day",
-                "type": "Land"
-            },
-            {
-                "place": "Route 2",
-                "time": "Night",
-                "type": "Land"
-            },
-            {
-                "place": "Route 1",
-                "time": "Day",
                 "type": "Land"
             },
             {
