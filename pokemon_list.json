@@ -25591,16 +25591,6 @@
                 "type": "Land"
             },
             {
-                "place": "Nightshade Crypts",
-                "time": "Day",
-                "type": "Land"
-            },
-            {
-                "place": "Nightshade Crypts",
-                "time": "Night",
-                "type": "Land"
-            },
-            {
                 "place": "Route 2",
                 "time": "Night",
                 "type": "Land"
@@ -36044,6 +36034,11 @@
             {
                 "place": "Mudbray Ranch",
                 "time": "Day",
+                "type": "Land"
+            },
+            {
+                "place": "Mudbray Ranch",
+                "time": "Night",
                 "type": "Land"
             }
         ],
