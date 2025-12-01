@@ -32506,20 +32506,10 @@
                 "type": "Land"
             },
             {
-                "place": "Route 2",
-                "time": "Night",
-                "type": "Land"
-            },
-            {
                 "place": "Route 9",
                 "time": "Night",
                 "type": "Land"
             },
-            {
-                "place": "Route 2",
-                "time": "Day",
-                "type": "Land"
-            }
         ],
         "previousForms": []
     },
