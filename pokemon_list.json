@@ -41105,7 +41105,7 @@
         "locations": [
             {
                 "place": "Route 15",
-                "time": "Day",
+                "time": "Night",
                 "type": "Land"
             }
         ],
@@ -41144,7 +41144,7 @@
         "locations": [
             {
                 "place": "Route 15",
-                "time": "Night",
+                "time": "Day",
                 "type": "Land"
             }
         ],
