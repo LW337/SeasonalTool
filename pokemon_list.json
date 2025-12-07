@@ -2021,41 +2021,6 @@
         ]
     },
     {
-        "id": 48,
-        "name": "Ninetales (Alolan)",
-        "rarity": "Common",
-        "variants": [
-            {
-                "type": "Normal",
-                "caught": false
-            },
-            {
-                "type": "Dark",
-                "caught": false
-            },
-            {
-                "type": "Mystic",
-                "caught": false
-            },
-            {
-                "type": "Metallic",
-                "caught": false
-            },
-            {
-                "type": "Shadow",
-                "caught": false
-            },
-            {
-                "type": "Shiny",
-                "caught": false
-            }
-        ],
-        "locations": [],
-        "previousForms": [
-            46
-        ]
-    },
-    {
         "id": 49,
         "name": "Ancient Jigglypuff",
         "rarity": "Legendary",
