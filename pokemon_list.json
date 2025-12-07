@@ -6750,9 +6750,7 @@
                 "type": "Land"
             }
         ],
-        "previousForms": [
-            504
-        ]
+        "previousForms": []
     },
     {
         "id": 154,
@@ -26755,11 +26753,6 @@
             }
         ],
         "locations": [
-            {
-                "place": "Route 14",
-                "time": "Day",
-                "type": "Land"
-            },
             {
                 "place": "Route 14",
                 "time": "Night",
