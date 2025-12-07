@@ -4033,6 +4033,16 @@
                 "type": "Land"
             },
             {
+                "place": "Fungal Cavern (Lower)",
+                "time": "Day",
+                "type": "Land"
+            },
+            {
+                "place": "Fungal Cavern (Lower)",
+                "time": "Night",
+                "type": "Land"
+            },
+            {
                 "place": "Fungal Cavern (West)",
                 "time": "Day",
                 "type": "Land"
