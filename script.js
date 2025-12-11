@@ -688,8 +688,11 @@ document.getElementById("recommendedRouteButton").addEventListener("click", reco
  * the Pokémon display accordingly.
  */
 function recommendedRoute() {
+	//Filter out Roaming Pokemon as an area for Recommendations
+	const filteredAreas = areasArray.filter(area => area.name !== "Roaming");
+	
     // Sort the areasArray based on the activeFilters.type
-    const sortedAreas = areasArray.sort((a, b) => {
+    const sortedAreas = filteredAreas.sort((a, b) => {
         const locationA = a.name;
         const locationB = b.name;
         const regex = new RegExp(/^Route \d+$/i);
