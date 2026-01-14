@@ -4,6 +4,7 @@ A tool for tracking Seasonal Catches
 Start by selecting the Route using the dropdown or by clicking Recommended Route
 
 ---Features----
+
 4 Filters: Variant, Location, Time and Encounter Type
 Ability to Show/Hide caught Pokemon
 Counters for Total Caught Pokemon and Pokemon Caught on Each Route
