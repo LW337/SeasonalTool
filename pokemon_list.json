@@ -30357,12 +30357,12 @@
         ],
         "locations": [
             {
-                "place": "Steelmouth Power Plant (Upper)",
+                "place": "Steelmouth Power Plant (Top)",
                 "time": "Day",
                 "type": "Land"
             },
             {
-                "place": "Steelmouth Power Plant (Upper)",
+                "place": "Steelmouth Power Plant (Top)",
                 "time": "Night",
                 "type": "Land"
             }
