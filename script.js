@@ -7,11 +7,11 @@ let activeFilters = {
     variant: ""
 };
 let counterMode = "count";
+let exportMode = "Export";
 let showCaught = true;
 let caughtPokemon = 0
 let totalPokemon = 0
 let areasArray = {}
-let lastCompletedEvos = new Set();
 
 // DOM elements ----------------------------------------------------------------
 const pokedex = document.getElementById("pokedex");
@@ -20,6 +20,7 @@ const exportBtn = document.getElementById("export-btn");
 const importBtn = document.getElementById("import-btn");
 const settingsMenu = document.getElementById("settings-menu");
 const settingsOverlay = document.getElementById("settings-overlay");
+const exportToggle = document.getElementById("export-toggle-btn")
 
 // Managing the Filter dropdowns -------------------------------------------------------------
 /**
@@ -302,6 +303,100 @@ function importPokedexData() {
 }
 
 /**
+ * Function to export the current pokedex data using corresponding mode.
+*/
+function exportPokedexData() {
+    if (exportMode === "Paste") {
+        exportPasteData();
+    } else {
+        exportOriginalPokedex();
+    }
+}
+
+/**
+ * Allows switching between paste and export mode.
+ * Uses the global variable exportMode to determine which mode to use.
+ * Toggled with the export-toggle-btn button.
+*/
+function toggleExportMode() {
+    exportMode = exportMode === "Paste" ? "Export" : "Paste";
+    document.getElementById("export-toggle-btn").textContent = `Export Mode: ${exportMode}`;
+}
+
+/**
+ * Exports the current pokedex data in a list format that provides base forms and evolution lines for caught Pokémon.
+ * The data is then displayed in the textarea element.
+*/
+function exportPasteData() {
+    // Get all evolution lines
+    const baseForms = pokemonList.filter(pokemon => pokemon.previousForms.length === 0);
+    
+    const evolutionLines = baseForms.map(baseForm => {
+        const line = [baseForm];
+        
+        // Find all evolutions of the current base form
+        let evoChain = pokemonList.filter(p => p.previousForms.includes(baseForm.id));
+        
+        // Add each evolution to the line
+        evoChain.forEach(pokemon => line.push(pokemon));
+        
+        return line.filter(pokemon => pokemon !== null); // Remove null entries
+    });
+    
+    // Find qualifying base forms
+    const qualifyingEntries = [];
+    
+    evolutionLines.forEach(line => {
+        // Skip lines with only 1 Pokémon
+        if (line.length < 2) return;
+        
+        // Get all variant types that exist in this evolution line
+        const allVariantTypes = new Set();
+        line.forEach(pokemon => {
+            pokemon.variants.forEach(variant => {
+                allVariantTypes.add(variant.type);
+            });
+        });
+        
+        // Check each variant type
+        allVariantTypes.forEach(variantType => {
+            // Get all Pokémon in this line that have this variant caught
+            const caughtPokemon = line.filter(pokemon => {
+                const variant = pokemon.variants.find(v => v.type === variantType);
+                return variant && variant.caught;
+            });
+            
+            // If 2+ Pokémon have this variant caught, add base form entry for each caught Pokémon
+            if (caughtPokemon.length >= 2) {
+                const baseForm = line[0]; // First Pokémon in the line is the base form
+                // Add one entry for each caught Pokémon (excluding the base form itself)
+                const nonBaseCaught = caughtPokemon.filter(p => p.id !== baseForm.id);
+                nonBaseCaught.forEach(() => {
+                    qualifyingEntries.push(`${variantType} ${baseForm.name || baseForm.id}`);
+                });
+            }
+        });
+    });
+    
+    // Sort alphabetically by variant type, then by Pokémon name
+    qualifyingEntries.sort((a, b) => {
+        const [variantA, nameA] = a.split(' ');
+        const [variantB, nameB] = b.split(' ');
+        
+        if (variantA !== variantB) {
+            return variantA.localeCompare(variantB);
+        }
+        return nameA.localeCompare(nameB);
+    });
+    
+    // Create text output
+    const textOutput = qualifyingEntries.join('\n');
+    
+    // Set the textarea value to the text output
+    textarea.value = textOutput;
+}
+
+/**
  * Exports the caught Pokémon data to a base64 encoded string in the textarea element.
  * The string represents a JSON object with a single property, "pokemonList", which
  * contains an array of pokemon objects. Each pokemon object has the following
@@ -310,7 +405,7 @@ function importPokedexData() {
  * caught property is a boolean indicating whether the variant has been caught or
  * not.
  */
-function exportPokedexData() {
+function exportOriginalPokedex() {
 
     // Get the list of caught Pokémon
     const caughtPokemonList = pokemonList.filter((pokemon) => {
@@ -376,19 +471,6 @@ const filterPokemon = () => {
             card.style.display = "none";
         });
     }
-
-    // Log all completed Evos
-    displayList.forEach(pokemon => {
-        if (
-            pokemon.previousForms.length > 0 &&
-            pokemon.variants.every(variant => variant.caught)
-        ) {
-            if (!lastCompletedEvos.has(pokemon.id)) {
-                console.log(pokemon.name);
-                lastCompletedEvos.add(pokemon.id);
-            }   
-        }
-    });
 };
 
 /**
@@ -652,6 +734,7 @@ const updateRouteCounter = () => {
 // Event listeners -------------------------------------------------------------
 exportBtn.addEventListener("click", exportPokedexData);
 importBtn.addEventListener("click", importPokedexData);
+exportToggle.addEventListener("click", toggleExportMode);
 
 //Allows Toggling Visibility of the settings menu and overlay
 document.getElementById("settings-toggle").addEventListener("click", () => {

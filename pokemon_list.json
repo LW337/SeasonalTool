@@ -152,30 +152,6 @@
         ]
     },
     {
-        "id": 5,
-        "name": "Clone Venusaur",
-        "rarity": "Legendary",
-        "variants": [
-            {
-                "type": "Normal",
-                "caught": false
-            }
-        ],
-        "locations": [
-            {
-                "place": "Roaming",
-                "time": "Day",
-                "type": "Land"
-            },
-            {
-                "place": "Roaming",
-                "time": "Night",
-                "type": "Land"
-            }
-        ],
-        "previousForms": []
-    },
-    {
         "id": 6,
         "name": "Charmander",
         "rarity": "Rare",
@@ -365,30 +341,6 @@
         ]
     },
     {
-        "id": 11,
-        "name": "Clone Charizard",
-        "rarity": "Legendary",
-        "variants": [
-            {
-                "type": "Normal",
-                "caught": false
-            }
-        ],
-        "locations": [
-            {
-                "place": "Roaming",
-                "time": "Day",
-                "type": "Land"
-            },
-            {
-                "place": "Roaming",
-                "time": "Night",
-                "type": "Land"
-            }
-        ],
-        "previousForms": []
-    },
-    {
         "id": 12,
         "name": "Squirtle",
         "rarity": "Rare",
@@ -549,30 +501,6 @@
             13,
             12
         ]
-    },
-    {
-        "id": 16,
-        "name": "Clone Blastoise",
-        "rarity": "Legendary",
-        "variants": [
-            {
-                "type": "Normal",
-                "caught": false
-            }
-        ],
-        "locations": [
-            {
-                "place": "Roaming",
-                "time": "Day",
-                "type": "Land"
-            },
-            {
-                "place": "Roaming",
-                "time": "Night",
-                "type": "Land"
-            }
-        ],
-        "previousForms": []
     },
     {
         "id": 17,
@@ -2029,30 +1957,6 @@
         "previousForms": [
             45
         ]
-    },
-    {
-        "id": 49,
-        "name": "Ancient Jigglypuff",
-        "rarity": "Legendary",
-        "variants": [
-            {
-                "type": "Normal",
-                "caught": false
-            }
-        ],
-        "locations": [
-            {
-                "place": "Roaming",
-                "time": "Day",
-                "type": "Land"
-            },
-            {
-                "place": "Roaming",
-                "time": "Night",
-                "type": "Land"
-            }
-        ],
-        "previousForms": []
     },
     {
         "id": 50,
@@ -3605,30 +3509,6 @@
             79,
             78
         ]
-    },
-    {
-        "id": 81,
-        "name": "Ancient Alakazam",
-        "rarity": "Legendary",
-        "variants": [
-            {
-                "type": "Normal",
-                "caught": false
-            }
-        ],
-        "locations": [
-            {
-                "place": "Roaming",
-                "time": "Day",
-                "type": "Land"
-            },
-            {
-                "place": "Roaming",
-                "time": "Night",
-                "type": "Land"
-            }
-        ],
-        "previousForms": []
     },
     {
         "id": 82,
@@ -5316,30 +5196,6 @@
         ]
     },
     {
-        "id": 120,
-        "name": "Ancient Gengar",
-        "rarity": "Legendary",
-        "variants": [
-            {
-                "type": "Normal",
-                "caught": false
-            }
-        ],
-        "locations": [
-            {
-                "place": "Roaming",
-                "time": "Day",
-                "type": "Land"
-            },
-            {
-                "place": "Roaming",
-                "time": "Night",
-                "type": "Land"
-            }
-        ],
-        "previousForms": []
-    },
-    {
         "id": 121,
         "name": "Onix",
         "rarity": "Common",
@@ -5402,30 +5258,6 @@
             },
             {
                 "place": "Route 7",
-                "time": "Night",
-                "type": "Land"
-            }
-        ],
-        "previousForms": []
-    },
-    {
-        "id": 122,
-        "name": "Crystal Onix",
-        "rarity": "Legendary",
-        "variants": [
-            {
-                "type": "Normal",
-                "caught": false
-            }
-        ],
-        "locations": [
-            {
-                "place": "Roaming",
-                "time": "Day",
-                "type": "Land"
-            },
-            {
-                "place": "Roaming",
                 "time": "Night",
                 "type": "Land"
             }
@@ -6213,30 +6045,6 @@
             {
                 "place": "Route 7",
                 "time": "Day",
-                "type": "Land"
-            }
-        ],
-        "previousForms": []
-    },
-    {
-        "id": 141,
-        "name": "Pink Rhyhorn",
-        "rarity": "Legendary",
-        "variants": [
-            {
-                "type": "Normal",
-                "caught": false
-            }
-        ],
-        "locations": [
-            {
-                "place": "Roaming",
-                "time": "Day",
-                "type": "Land"
-            },
-            {
-                "place": "Roaming",
-                "time": "Night",
                 "type": "Land"
             }
         ],
@@ -7716,30 +7524,6 @@
         "previousForms": []
     },
     {
-        "id": 172,
-        "name": "Snorlax (Snowman)",
-        "rarity": "Legendary",
-        "variants": [
-            {
-                "type": "Normal",
-                "caught": false
-            }
-        ],
-        "locations": [
-            {
-                "place": "Roaming",
-                "time": "Day",
-                "type": "Land"
-            },
-            {
-                "place": "Roaming",
-                "time": "Night",
-                "type": "Land"
-            }
-        ],
-        "previousForms": []
-    },
-    {
         "id": 173,
         "name": "Articuno",
         "rarity": "Legendary",
@@ -8044,30 +7828,6 @@
             },
             {
                 "place": "Fungal Cavern (Lower)",
-                "time": "Night",
-                "type": "Land"
-            }
-        ],
-        "previousForms": []
-    },
-    {
-        "id": 180,
-        "name": "Mewtwo (Shadow)",
-        "rarity": "Legendary",
-        "variants": [
-            {
-                "type": "Normal",
-                "caught": false
-            }
-        ],
-        "locations": [
-            {
-                "place": "Roaming",
-                "time": "Day",
-                "type": "Land"
-            },
-            {
-                "place": "Roaming",
                 "time": "Night",
                 "type": "Land"
             }
@@ -9437,30 +9197,6 @@
         "previousForms": [
             503
         ]
-    },
-    {
-        "id": 213,
-        "name": "Golden Sudowoodo",
-        "rarity": "Legendary",
-        "variants": [
-            {
-                "type": "Normal",
-                "caught": false
-            }
-        ],
-        "locations": [
-            {
-                "place": "Roaming",
-                "time": "Day",
-                "type": "Land"
-            },
-            {
-                "place": "Roaming",
-                "time": "Night",
-                "type": "Land"
-            }
-        ],
-        "previousForms": []
     },
     {
         "id": 214,
@@ -13449,30 +13185,6 @@
             303,
             302
         ]
-    },
-    {
-        "id": 305,
-        "name": "XD001",
-        "rarity": "Legendary",
-        "variants": [
-            {
-                "type": "Normal",
-                "caught": false
-            }
-        ],
-        "locations": [
-            {
-                "place": "Roaming",
-                "time": "Day",
-                "type": "Land"
-            },
-            {
-                "place": "Roaming",
-                "time": "Night",
-                "type": "Land"
-            }
-        ],
-        "previousForms": []
     },
     {
         "id": 306,
@@ -18208,30 +17920,6 @@
         "previousForms": []
     },
     {
-        "id": 413,
-        "name": "Reddy",
-        "rarity": "Legendary",
-        "variants": [
-            {
-                "type": "Normal",
-                "caught": false
-            }
-        ],
-        "locations": [
-            {
-                "place": "Roaming",
-                "time": "Day",
-                "type": "Land"
-            },
-            {
-                "place": "Roaming",
-                "time": "Night",
-                "type": "Land"
-            }
-        ],
-        "previousForms": []
-    },
-    {
         "id": 414,
         "name": "Shuppet",
         "rarity": "Common",
@@ -19543,30 +19231,6 @@
         "previousForms": []
     },
     {
-        "id": 444,
-        "name": "Meta Groudon",
-        "rarity": "Legendary",
-        "variants": [
-            {
-                "type": "Normal",
-                "caught": false
-            }
-        ],
-        "locations": [
-            {
-                "place": "Roaming",
-                "time": "Day",
-                "type": "Land"
-            },
-            {
-                "place": "Roaming",
-                "time": "Night",
-                "type": "Land"
-            }
-        ],
-        "previousForms": []
-    },
-    {
         "id": 445,
         "name": "Rayquaza",
         "rarity": "Legendary",
@@ -19639,30 +19303,6 @@
         "previousForms": [
             445
         ]
-    },
-    {
-        "id": 447,
-        "name": "Rayquaza (Illusion)",
-        "rarity": "Legendary",
-        "variants": [
-            {
-                "type": "Normal",
-                "caught": false
-            }
-        ],
-        "locations": [
-            {
-                "place": "Roaming",
-                "time": "Day",
-                "type": "Land"
-            },
-            {
-                "place": "Roaming",
-                "time": "Night",
-                "type": "Land"
-            }
-        ],
-        "previousForms": []
     },
     {
         "id": 448,
@@ -23682,30 +23322,6 @@
         "locations": [
             {
                 "place": "Wild Overgrowth",
-                "time": "Night",
-                "type": "Land"
-            }
-        ],
-        "previousForms": []
-    },
-    {
-        "id": 547,
-        "name": "Dialga (Primal)",
-        "rarity": "Legendary",
-        "variants": [
-            {
-                "type": "Normal",
-                "caught": false
-            }
-        ],
-        "locations": [
-            {
-                "place": "Roaming",
-                "time": "Day",
-                "type": "Land"
-            },
-            {
-                "place": "Roaming",
                 "time": "Night",
                 "type": "Land"
             }
@@ -34500,30 +34116,6 @@
             },
             {
                 "type": "Shiny",
-                "caught": false
-            }
-        ],
-        "locations": [
-            {
-                "place": "Roaming",
-                "time": "Day",
-                "type": "Land"
-            },
-            {
-                "place": "Roaming",
-                "time": "Night",
-                "type": "Land"
-            }
-        ],
-        "previousForms": []
-    },
-    {
-        "id": 812,
-        "name": "Z2",
-        "rarity": "Legendary",
-        "variants": [
-            {
-                "type": "Normal",
                 "caught": false
             }
         ],
@@ -46807,6 +46399,30 @@
             },
             {
                 "place": "Nightshade Crypt",
+                "time": "Night",
+                "type": "Land"
+            }
+        ],
+        "previousForms": []
+    },
+        {
+        "id": 1103,
+        "name": "Monthly Roamer",
+        "rarity": "Legendary",
+        "variants": [
+            {
+                "type": "Normal",
+                "caught": false
+            }
+        ],
+        "locations": [
+            {
+                "place": "Roaming",
+                "time": "Day",
+                "type": "Land"
+            },
+            {
+                "place": "Roaming",
                 "time": "Night",
                 "type": "Land"
             }
